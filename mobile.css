@@ -1,0 +1,121 @@
+/* ========================
+   MOBILE STYLES
+   ======================== */
+
+/* Base Styles */
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    padding: 0 15px;
+    max-width: 100%;
+}
+
+/* Typography */
+h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    margin: 1rem 0 !important;
+}
+
+h2 {
+    font-size: 1.5rem !important;
+    margin: 0.8rem 0 !important;
+}
+
+h3 {
+    font-size: 1.3rem !important;
+}
+
+/* Buttons */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 1rem !important;
+    font-size: 1.1rem !important;
+    margin: 0.5rem 0 !important;
+    text-align: center;
+    white-space: nowrap;
+    touch-action: manipulation;
+}
+
+/* Forms */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    -webkit-appearance: none;
+    border-radius: 4px;
+}
+
+/* Navigation */
+.nav-menu {
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cards */
+.card {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    padding: 1.5rem 0 !important;
+    text-align: center !important;
+}
+
+/* Utility Classes */
+.mt-5 {
+    margin-top: 2rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 2rem !important;
+}
+
+.py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}
+
+/* Disable animations on mobile for better performance */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Specific adjustments for very small devices */
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.8rem !important;
+    }
+    
+    .btn {
+        padding: 0.8rem !important;
+        font-size: 1rem !important;
+    }
+}

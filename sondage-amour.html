@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sondage Saint-Valentin - Découvre ce que j'aime">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondage Saint-Valentin</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/jpg" href="assets/img/headerLogo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Sacramento&family=Allura&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Reset & Base Styles */
+        * { 
+            margin: 0; 
+            padding: 0; 
+{{ ... }}
+        
+        /* Styles de base pour le body */
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch; /* Défilement fluide sur iOS */
+        }
+        
+        /* Permettre la sélection de texte pour les champs de formulaire et les messages */
+        input, textarea, .message {
+            -webkit-user-select: text;
+            -khtml-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fff9f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        /* ========================
+           HEADER
+           ======================== */
+        .site-header {
+            background-color: #fff;
+            padding: 15px 40px 10px 40px;
+            position: relative;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: visible;
+            background-color: #fff;
+            padding-bottom: 10px; /* Espace pour la vague */
+        }
+
+        /* --- Gauche --- */
+        .header-left { 
+            display: flex; 
+            align-items: center;
+            gap: 20px; 
+            flex: 1;
+            z-index: 102; /* Au-dessus de la vague */
+        }
+        
+        .burger-menu { 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 5px; 
+            width: 24px;
+            padding: 0;
+        }
+        
+        .burger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .burger-menu:hover span {
+            background-color: #ff6b6b;
+        }
+
+        .nav-text { 
+            text-transform: uppercase; 
+            font-size: 0.7rem; 
+            letter-spacing: 2px; 
+            font-weight: 600; 
+            color: #111;
+            transition: color 0.3s ease;
+        }
+        
+        .burger-menu:hover + .nav-text {
+            color: #ff6b6b;
+        }
+
+        /* --- Centre (Logo) --- */
+        .header-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2; /* Au-dessus de la vague */
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 15px;
+        }
+
+        .logo-brand {
+            height: 70px;
+            width: auto;
+            max-width: 250px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        
+        .logo-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        /* --- Droite --- */
+        .header-right { 
+            flex: 1; 
+            display: flex; 
+            justify-content: flex-end; 
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            z-index: 2; /* Au-dessus de la vague */
+        }
+        
+        /* Vague décorative sous le header */
+        .wavy-decoration {
+            position: absolute;
+            bottom: -29px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            z-index: 101;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L 0 10 Q 30 25 60 10 T 120 10 L 120 0 Z' fill='%23fff' stroke='none' /%3E%3Cpath d='M0 10 Q 30 25 60 10 T 120 10' fill='none' stroke='%23d63026' stroke-width='3' /%3E%3C/svg%3E");
+            background-size: 160px 30px;
+            background-repeat: repeat-x;
+            background-position: center bottom;
+        }
+        
+        /* Style pour le bouton de retour */
+        .btn-return-home {
+            text-decoration: none;
+            color: #c93026;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+            line-height: 1.2;
+        }
+        
+        .btn-return-home .btn-text {
+            text-align: right;
+            margin-right: 8px;
+        }
+        
+        .btn-return-home i {
+            font-size: 1.2rem;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-return-home:hover i {
+            transform: translateX(-3px);
+        }
+        
+        .social-icon {
+            color: #ff4d6d;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-family: 'Tangerine', cursive;
+            font-size: 4rem;
+            text-align: center;
+            color: #ff6b6b !important;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #ff6b6b !important;
+            font-family: 'Tangerine', cursive;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,64L60,80C120,96,240,128,360,128C480,128,600,96,720,90.7C840,85,960,107,1080,112C1200,117,1320,107,1380,101.3L1440,96V0H0V64Z" fill="%23ff4d6d"></path></svg>') bottom center no-repeat;
+            background-size: 100% 100%;
+            z-index: 1;
+        }
+
+        /* --- Droite (Boutons) --- */
+        .header-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .survey-option {
+            background: linear-gradient(145deg, #ffffff, #f8f8f8);
+            border-radius: 12px;
+            padding: 1.8rem 2rem;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .survey-option.selected {
+            border: 1px solid #ff6b6b;
+            background: linear-gradient(145deg, #fff5f5, #ffebee);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .survey-option.selected::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b6b, #ff8e8e);
+        }
+        
+        .survey-option .checkmark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        
+        .survey-option.selected .checkmark {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-color: #ff6b6b;
+            transform: scale(1.1);
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        .survey-option .bi-check-lg {
+            color: white;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .survey-option.selected .bi-check-lg {
+            display: block !important;
+        }
+        
+        .survey-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.15);
+            border-color: #ffd3d3;
+        }
+        
+        .survey-option:active {
+            transform: translateY(-1px) scale(0.995);
+        }
+
+        .survey-option h4 {
+            color: #2d3436;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .survey-option h4 i {
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+        
+        .survey-option:hover h4 i {
+            transform: scale(1.1);
+        }
+
+        .survey-option p {
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            padding-right: 1.5rem;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Buttons */
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 3rem auto 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #ff5a5a, #ff7b7b);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Messages */
+        .hidden-message {
+            display: none;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: #fff9f9;
+            border-left: 4px solid #ff6b6b;
+            border-radius: 0 8px 8px 0;
+            color: #333 !important;
+        }
+
+        /* Heart Animation */
+        .heart {
+            color: #ff6b6b;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Thank You Section */
+        .thank-you {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 140, 0.1);
+            max-width: 800px;
+            margin: 2rem auto;
+            display: none;
+        }
+
+        .thank-you h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .thank-you p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+
+        /* Checkbox & Radio Buttons */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            padding: 0.5rem 0;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .checkbox-item input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #ff6b6b;
+            cursor: pointer;
+        }
+
+        /* Star Rating */
+        .rating {
+            display: flex;
+            gap: 0.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating label {
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: #ddd;
+            transition: color 0.2s;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .rating input[type="radio"]:checked ~ label,
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: #ffd700;
+        }
+
+        /* Animation du menu burger */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Animation des boutons */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Animation du cœur */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Styles pour les écrans mobiles */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                line-height: 1.5;
+                -webkit-text-size-adjust: 100%;
+            }
+            
+            .container {
+                width: 100%;
+                padding: 0 15px;
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                margin: 1rem 0 !important;
+                line-height: 1.2 !important;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                margin: 1rem 0 !important;
+            }
+            
+            .section {
+                padding: 1.5rem 0 !important;
+            }
+            
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            
+            .rating {
+                justify-content: center !important;
+                flex-wrap: wrap;
+            }
+            
+            .star-label {
+                font-size: 1.8rem !important;
+                margin: 0 3px !important;
+            }
+            
+            .submit-btn {
+                width: 100% !important;
+                padding: 1rem !important;
+                font-size: 1.1rem !important;
+                margin: 0.5rem 0 !important;
+            }
+            
+            /* Ajustement des champs de formulaire */
+            input[type="text"],
+            input[type="email"],
+            textarea,
+            select {
+                width: 100% !important;
+                font-size: 16px !important;
+                padding: 12px !important;
+            }
+            
+            /* Ajustement des marges et paddings */
+            .mt-5 {
+                margin-top: 2rem !important;
+            }
+            
+            .mb-5 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .py-5 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            /* Ajustement du pied de page */
+            footer {
+                padding: 1.5rem 0 !important;
+                text-align: center !important;
+            }
+            
+            /* Ajustement du message de remerciement */
+            .thank-you {
+                padding: 1.5rem !important;
+            }
+            
+            .thank-you h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .survey-option {
+                padding: 1rem;
+            }
+            
+            .header-left {
+                gap: 10px;
+            }
+            
+            .nav-text {
+                display: none;
+            }
+            
+            .header-right a {
+                font-size: 0.6rem;
+            }
+            
+            .header-right i {
+                font-size: 1.5rem !important;
+            }
+        }
+        </style>
+    <script>
+        // Initialisation des étoiles de notation améliorée
+        function setupRating(prefix, maxRating) {
+            const container = document.querySelector(`.rating[data-rating="${prefix}"]`);
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            // Créer les étoiles
+            for (let i = maxRating; i >= 1; i--) {
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.id = `${prefix}-star-${i}`;
+                input.name = `rating-${prefix}`;
+                input.value = i;
+                
+                const label = document.createElement('label');
+                label.htmlFor = `${prefix}-star-${i}`;
+                label.title = `${i} étoile${i > 1 ? 's' : ''}`;
+                
+                // Gestion du clic
+                input.addEventListener('change', function() {
+                    const newRating = this.checked ? parseInt(this.value) : 0;
+                    container.dataset.rating = newRating;
+                    updateRatingDisplays();
+                    saveResponses();
+                });
+                
+                container.appendChild(input);
+                container.appendChild(label);
+            }
+            
+            // Ajouter un affichage de la note
+            const display = document.createElement('div');
+            display.className = 'rating-display';
+            display.style.marginTop = '5px';
+            display.style.color = '#666';
+            display.style.fontSize = '0.9rem';
+            display.textContent = 'Non noté';
+            
+            container.parentNode.insertBefore(display, container.nextSibling);
+            container.dataset.rating = '0';
+        }
+        
+        // Mise à jour de l'affichage des évaluations améliorée
+        function updateRatingDisplays() {
+            document.querySelectorAll('.rating').forEach(ratingEl => {
+                const currentRating = parseInt(ratingEl.dataset.rating || '0');
+                const inputs = ratingEl.querySelectorAll('input[type="radio"]');
+                
+                // Mettre à jour l'état des inputs
+                inputs.forEach(input => {
+                    input.checked = (parseInt(input.value) <= currentRating);
+                });
+                
+                // Mettre à jour l'affichage
+                const display = ratingEl.nextElementSibling;
+                if (display && display.classList.contains('rating-display')) {
+                    if (currentRating > 0) {
+                        display.textContent = `${currentRating} étoile${currentRating > 1 ? 's' : ''}`;
+                        display.style.color = '#ff9800';
+                        display.style.fontWeight = '600';
+                        display.style.transition = 'all 0.3s ease';
+                    } else {
+                        display.textContent = 'Non noté';
+                        display.style.color = '#666';
+                        display.style.fontWeight = 'normal';
+                    }
+                }
+            });
+        }
+        
+        // Sélection d'une option (toujours en multi-sélection)
+        function selectOption(element, category) {
+            // Trouver le conteneur parent si on a cliqué sur un élément enfant
+            let optionElement = element;
+            while (optionElement && !optionElement.classList.contains('survey-option')) {
+                optionElement = optionElement.parentElement;
+                if (!optionElement) return; // Sortir si on ne trouve pas l'élément parent
+            }
+            
+            // Basculer l'état de sélection de l'option cliquée
+            const isSelected = optionElement.classList.contains('selected');
+            optionElement.classList.toggle('selected', !isSelected);
+            
+            // Mettre à jour l'icône de vérification
+            const checkmark = optionElement.querySelector('.checkmark');
+            if (checkmark) {
+                const icon = checkmark.querySelector('i');
+                if (icon) {
+                    icon.style.display = !isSelected ? 'block' : 'none';
+                }
+            }
+            
+            // Sauvegarder les réponses
+            saveResponses();
+            
+            // Mettre à jour l'état du bouton de soumission
+            updateSubmitButton();
+            
+            // Empêcher le comportement par défaut du clic
+            event.stopPropagation();
+            return false;
+        }
+        
+        // Mettre à jour l'état du bouton de soumission
+        function updateSubmitButton() {
+            const submitBtn = document.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const allSections = ['sortie', 'cuisine', 'activite', 'special'];
+                const allAnswered = allSections.every(section => {
+                    // Vérifier qu'au moins une option est sélectionnée dans chaque section
+                    return document.querySelector(`.survey-option[onclick*="${section}"].selected`);
+                });
+                submitBtn.disabled = !allAnswered;
+                
+                // Mettre à jour le style du bouton
+                if (allAnswered) {
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    submitBtn.style.transform = 'translateY(0)';
+                    submitBtn.style.boxShadow = '0 4px 15px rgba(255, 107, 107, 0.4)';
+                } else {
+                    submitBtn.style.opacity = '0.7';
+                    submitBtn.style.cursor = 'not-allowed';
+                    submitBtn.style.transform = 'none';
+                    submitBtn.style.boxShadow = 'none';
+                }
+            }
+        }
+        
+        // Sauvegarde des réponses
+        function saveResponses() {
+            const responses = {};
+            
+            // Sauvegarder les évaluations
+            document.querySelectorAll('.rating').forEach(ratingEl => {
+                const prefix = ratingEl.dataset.rating;
+                const value = ratingEl.dataset.rating;
+                responses[`rating_${prefix}`] = value;
+            });
+            
+            // Sauvegarder les options sélectionnées
+            document.querySelectorAll('.survey-option.selected').forEach(option => {
+                const category = option.dataset.category;
+                const value = option.textContent.trim();
+                responses[category] = value;
+            });
+            
+            // Stocker dans le localStorage
+            localStorage.setItem('loveSurveyResponses', JSON.stringify(responses));
+        }
+        
+        // Affichage du message de remerciement
+        function showThankYou() {
+            if (validateForm()) {
+                saveResponses();
+                
+                // Afficher le message de remerciement
+                const form = document.getElementById('loveSurvey');
+                const thankYouDiv = document.getElementById('thank-you');
+                
+                if (thankYouDiv) {
+                    // Masquer le formulaire et afficher le message de remerciement
+                    form.style.display = 'none';
+                    thankYouDiv.style.display = 'block';
+                    
+                    // Faire défiler vers le haut
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    // Solution de secours si l'élément n'est pas trouvé
+                    const thankYouMessage = document.createElement('div');
+                    thankYouMessage.className = 'thank-you-message';
+                    thankYouMessage.innerHTML = `
+                        <h2>Merci pour tes réponses ! 💝</h2>
+                        <p>J'ai enregistré tes préférences pour nos prochains rendez-vous.</p>
+                        <p>À très vite pour de nouvelles aventures ensemble !</p>
+                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: #d63026; color: white; border: none; border-radius: 5px; cursor: pointer;">Recommencer</button>
+                    `;
+                    
+                    form.innerHTML = '';
+                    form.appendChild(thankYouMessage);
+                    
+                    // Faire défiler vers le haut
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+        
+        // Validation du formulaire
+        function validateForm() {
+            // Vérifier qu'au moins une option est sélectionnée dans chaque section
+            const sections = ['sortie', 'cuisine', 'activite', 'special'];
+            let isValid = true;
+            
+            sections.forEach(section => {
+                const selected = document.querySelector(`.survey-option[onclick*="${section}"].selected`);
+                if (!selected) {
+                    isValid = false;
+                    // Mettre en évidence la section manquante
+                    const sectionElement = document.querySelector(`#${section}-section`);
+                    if (sectionElement) {
+                        sectionElement.style.animation = 'shake 0.5s';
+                        setTimeout(() => {
+                            sectionElement.style.animation = '';
+                        }, 500);
+                    }
+                }
+            });
+            
+            if (!isValid) {
+                const message = document.createElement('div');
+                message.className = 'error-message';
+                message.innerHTML = 'Veuillez sélectionner au moins une option dans chaque section avant de soumettre.';
+                message.style.cssText = 'background: #ffebee; color: #c62828; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; border-left: 4px solid #c62828;';
+                
+                // Supprimer les messages d'erreur existants
+                const existingError = document.querySelector('.error-message');
+                if (existingError) existingError.remove();
+                
+                // Ajouter le message d'erreur
+                const form = document.getElementById('loveSurvey');
+                form.insertBefore(message, form.firstChild);
+                
+                // Faire défiler jusqu'au message d'erreur
+                message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-left">
+            <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu(event)">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
+        </div>
+
+        <div class="header-center">
+            <div class="logo-container">
+                <img src="https://png.pngtree.com/png-clipart/20230411/original/pngtree-heart-logo-png-image_9047687.png" alt="Asian Store" class="logo-brand">
+            </div>
+        </div>
+
+        <div class="header-right">
+            <a href="index.html" class="btn-return-home">
+                <div class="btn-text">
+                    <div>Retour à</div>
+                    <div>l'accueil</div>
+                </div>
+                <i class="bi bi-box-arrow-in-left"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Cœur">
+                <i class="bi bi-tux"></i>
+            </a>
+        </div>
+        <div class="wavy-decoration"></div>
+    </header>
+    
+    <!-- Menu Mobile -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="index.html">Accueil</a>
+        <a href="souvenirs.html">Nos Souvenirs</a>
+        <a href="sondage-amour.html">Sondage d'Amour</a>
+        <a href="#" id="viewResponsesBtn" onclick="if(typeof showResponses === 'function') { showResponses(); return false; }">Voir les Réponses</a>
+    </div>
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+
+    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 2rem;">
+        <div class="secret-section" style="background: linear-gradient(135deg, #fff9f9 0%, #fff 100%); border-radius: 15px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <h1 style="text-align: center; font-family: 'Tangerine', cursive; font-size: 3.5rem; color: #d63026; margin-bottom: 1rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.1);">Notre Sondage Amour <span class="heart">❤️</span></h1>
+            <p style="text-align: center; color: #666; margin-bottom: 2.5rem; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.7;">Aide-moi à mieux te connaître pour rendre nos moments encore plus spéciaux</p>
+            
+            <div id="welcome-message" class="hidden-message" style="display: block; background: #fff; border-radius: 10px; padding: 1.8rem; margin-bottom: 2.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border-left: 4px solid #d63026; transition: all 0.3s ease;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #333; line-height: 1.7;">Salut mon amour ❤️</p>
+                <p style="margin-bottom: 1rem; color: #555; line-height: 1.7;">J'ai préparé ce petit sondage pour mieux connaître tes envies et préférences. C'est anonyme et ça m'aidera à organiser des moments encore plus spéciaux pour nous deux.</p>
+                <p style="margin: 0; color: #555; font-style: italic; line-height: 1.7;">Prends ton temps pour répondre, il n'y a pas de bonnes ou mauvaises réponses !</p>
+            </div>
+
+            <form id="loveSurvey" onsubmit="showThankYou(event); return false;">
+                <section id="preferences-section" style="margin-bottom: 3rem;">
+                    <h2 style="font-family: 'Tangerine', cursive; font-size: 2.5rem; color: #d63026; margin-bottom: 1.5rem; text-align: center; position: relative; padding-bottom: 10px;">
+                        Préférences Générales
+                        <span style="display: block; width: 60px; height: 3px; background: linear-gradient(90deg, #d63026, #ff6b6b); margin: 0.5rem auto 0; border-radius: 3px;"></span>
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label>Quel type de sortie préfères-tu ?</label>
+                        <div class="checkbox-group">
+                            <div class="survey-option" onclick="selectOption(this, 'sortie')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-cup-straw" style="color: #d63026; font-size: 1.3rem;"></i>
+                                    Restaurants chics
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Pour des dîners romantiques et raffinés</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'sortie')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-tree" style="color: #2e7d32; font-size: 1.3rem;"></i>
+                                    Balades en nature
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Randonnées, plage ou parcs</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'sortie')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-brightness-high" style="color: #ff8f00; font-size: 1.3rem;"></i>
+                                    Activités culturelles
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Musées, expositions, théâtre</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'sortie')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-house-heart" style="color: #c2185b; font-size: 1.3rem;"></i>
+                                    Soirées à la maison
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Films, jeux, cuisine ensemble</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Ta cuisine préférée ?</label>
+                        <div class="checkbox-group">
+                            <div class="survey-option" onclick="selectOption(this, 'cuisine')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-cup-hot" style="color: #d32f2f; font-size: 1.3rem;"></i>
+                                    Française
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Fromage, vin et gastronomie</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'cuisine')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-egg-fried" style="color: #ff9800; font-size: 1.3rem;"></i>
+                                    Asiatique
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Sushi, thaï, chinois, etc.</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'cuisine')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-egg" style="color: #f44336; font-size: 1.3rem;"></i>
+                                    Italienne
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Pâtes, pizza, risotto</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'cuisine')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-emoji-smile" style="color: #e91e63; font-size: 1.3rem;"></i>
+                                    Autre
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Dis-moi ce que tu préfères</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="activities-section" style="margin: 3rem 0;">
+                    <h2 style="font-family: 'Tangerine', cursive; font-size: 2.5rem; color: #d63026; margin-bottom: 1.5rem; text-align: center; position: relative; padding-bottom: 10px;">
+                        Activités Préférées
+                        <span style="display: block; width: 60px; height: 3px; background: linear-gradient(90deg, #d63026, #ff6b6b); margin: 0.5rem auto 0; border-radius: 3px;"></span>
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label>Quelles activités t'intéressent pour nos prochaines sorties ?</label>
+                        <div class="checkbox-group" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                            <div class="survey-option" onclick="selectOption(this, 'activite')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-film" style="color: #6a1b9a; font-size: 1.3rem;"></i>
+                                    Cinéma / Films
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Découvrir de nouveaux films ensemble</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'activite')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-activity" style="color: #2e7d32; font-size: 1.3rem;"></i>
+                                    Activités sportives
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Randonnée, vélo, natation, etc.</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'activite')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-joystick" style="color: #1565c0; font-size: 1.3rem;"></i>
+                                    Jeux de société / Jeux vidéo
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Pour des soirées fun à la maison</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'activite')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-airplane" style="color: #7b1fa2; font-size: 1.3rem;"></i>
+                                    Voyages / Week-ends
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Découvrir de nouveaux endroits</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'activite')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-egg-fried" style="color: #e65100; font-size: 1.3rem;"></i>
+                                    Ateliers cuisine
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Apprendre à cuisiner ensemble</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Niveau d'énergie préféré pour nos sorties :</label>
+                        <div class="checkbox-group" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                            <div class="survey-option" onclick="selectOption(this, 'energie')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-emoji-smile" style="color: #4caf50; font-size: 1.3rem;"></i>
+                                    Détente et calme
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">On prend notre temps, on se détend</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'energie')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-emoji-wink" style="color: #ff9800; font-size: 1.3rem;"></i>
+                                    Un peu d'action mais sans excès
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Un bon équilibre entre activité et détente</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'energie')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-lightning-charge" style="color: #f44336; font-size: 1.3rem;"></i>
+                                    Aventure et sensations fortes !
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">On se fait plaisir avec des activités dynamiques</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="special-section" style="margin: 3rem 0;">
+                    <h2 style="font-family: 'Tangerine', cursive; font-size: 2.5rem; color: #d63026; margin-bottom: 1.5rem; text-align: center; position: relative; padding-bottom: 10px;">
+                        Moments Spéciaux
+                        <span style="display: block; width: 60px; height: 3px; background: linear-gradient(90deg, #d63026, #ff6b6b); margin: 0.5rem auto 0; border-radius: 3px;"></span>
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label>Qu'est-ce qui te fait te sentir spéciale ?</label>
+                        <div class="checkbox-group" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                            <div class="survey-option" onclick="selectOption(this, 'special')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-gift" style="color: #e91e63; font-size: 1.3rem;"></i>
+                                    Petits cadeaux attentionnés
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Des petites attentions qui font plaisir</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'special')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-chat-heart" style="color: #c2185b; font-size: 1.3rem;"></i>
+                                    Mots doux et compliments
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Des mots qui viennent du cœur</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'special')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-clock" style="color: #9c27b0; font-size: 1.3rem;"></i>
+                                    Temps de qualité
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Rien ne vaut des moments partagés</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'special')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-people" style="color: #673ab7; font-size: 1.3rem;"></i>
+                                    Câlins et tendresse
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Les petits gestes affectueux</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="survey-option" onclick="selectOption(this, 'special')" style="background: white; border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; border: 1px solid #eee; box-shadow: 0 3px 10px rgba(0,0,0,0.03);">
+                                <h4 style="color: #333; margin-bottom: 0.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="bi bi-stars" style="color: #ff9800; font-size: 1.3rem;"></i>
+                                    Les surprises !
+                                </h4>
+                                <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">J'adore être surprise</p>
+                                <div class="checkmark" style="position: absolute; top: 15px; right: 15px; width: 22px; height: 22px; border: 2px solid #ddd; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-check-lg" style="color: white; font-size: 0.9rem; display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 2.5rem;">
+                        <label style="font-size: 1.1rem; color: #555; margin-bottom: 1.5rem; display: block; text-align: center;">Note tes envies pour notre prochain rendez-vous :</label>
+                        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; margin-bottom: 0.8rem; background: #fff9f9; border-radius: 8px;">
+                                <span style="font-weight: 500; color: #444; display: flex; align-items: center; gap: 8px;">
+                                    <i class="bi bi-egg-fried" style="color: #e65100;"></i>
+                                    Repas au restaurant
+                                </span>
+                                <div class="rating" data-rating="resto" style="display: flex; gap: 2px;">
+                                    <input type="radio" id="resto-5" name="resto-rating" value="5" style="display: none;">
+                                    <label for="resto-5" class="star-label" data-value="5">★</label>
+                                    <input type="radio" id="resto-4" name="resto-rating" value="4" style="display: none;">
+                                    <label for="resto-4" class="star-label" data-value="4">★</label>
+                                    <input type="radio" id="resto-3" name="resto-rating" value="3" style="display: none;">
+                                    <label for="resto-3" class="star-label" data-value="3">★</label>
+                                    <input type="radio" id="resto-2" name="resto-rating" value="2" style="display: none;">
+                                    <label for="resto-2" class="star-label" data-value="2">★</label>
+                                    <input type="radio" id="resto-1" name="resto-rating" value="1" style="display: none;">
+                                    <label for="resto-1" class="star-label" data-value="1">★</label>
+                                    <div class="rating-display" style="margin-left: 10px; font-size: 0.9rem; color: #666; display: flex; align-items: center; min-width: 80px;">
+                                        <span class="rating-text">Non noté</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; margin-bottom: 0.8rem; background: #fff9f9; border-radius: 8px;">
+                                <span style="font-weight: 500; color: #444; display: flex; align-items: center; gap: 8px;">
+                                    <i class="bi bi-tree" style="color: #2e7d32;"></i>
+                                    Activité en extérieur
+                                </span>
+                                <div class="rating" data-rating="outdoor" style="display: flex; gap: 2px;">
+                                    <input type="radio" id="outdoor-5" name="outdoor-rating" value="5" style="display: none;">
+                                    <label for="outdoor-5" class="star-label" data-value="5">★</label>
+                                    <input type="radio" id="outdoor-4" name="outdoor-rating" value="4" style="display: none;">
+                                    <label for="outdoor-4" class="star-label" data-value="4">★</label>
+                                    <input type="radio" id="outdoor-3" name="outdoor-rating" value="3" style="display: none;">
+                                    <label for="outdoor-3" class="star-label" data-value="3">★</label>
+                                    <input type="radio" id="outdoor-2" name="outdoor-rating" value="2" style="display: none;">
+                                    <label for="outdoor-2" class="star-label" data-value="2">★</label>
+                                    <input type="radio" id="outdoor-1" name="outdoor-rating" value="1" style="display: none;">
+                                    <label for="outdoor-1" class="star-label" data-value="1">★</label>
+                                    <div class="rating-display" style="margin-left: 10px; font-size: 0.9rem; color: #666; display: flex; align-items: center; min-width: 80px;">
+                                        <span class="rating-text">Non noté</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; background: #fff9f9; border-radius: 8px;">
+                                <span style="font-weight: 500; color: #444; display: flex; align-items: center; gap: 8px;">
+                                    <i class="bi bi-house-heart" style="color: #c2185b;"></i>
+                                    Soirée à la maison
+                                </span>
+                                <div class="rating" data-rating="home" style="display: flex; gap: 2px;">
+                                    <input type="radio" id="home-5" name="home-rating" value="5" style="display: none;">
+                                    <label for="home-5" class="star-label" data-value="5">★</label>
+                                    <input type="radio" id="home-4" name="home-rating" value="4" style="display: none;">
+                                    <label for="home-4" class="star-label" data-value="4">★</label>
+                                    <input type="radio" id="home-3" name="home-rating" value="3" style="display: none;">
+                                    <label for="home-3" class="star-label" data-value="3">★</label>
+                                    <input type="radio" id="home-2" name="home-rating" value="2" style="display: none;">
+                                    <label for="home-2" class="star-label" data-value="2">★</label>
+                                    <input type="radio" id="home-1" name="home-rating" value="1" style="display: none;">
+                                    <label for="home-1" class="star-label" data-value="1">★</label>
+                                    <div class="rating-display" style="margin-left: 10px; font-size: 0.9rem; color: #666; display: flex; align-items: center; min-width: 80px;">
+                                        <span class="rating-text">Non noté</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="extra-section" style="margin: 3rem 0;">
+                    <h2 style="font-family: 'Tangerine', cursive; font-size: 2.5rem; color: #d63026; margin-bottom: 1.5rem; text-align: center; position: relative; padding-bottom: 10px;">
+                        Pour aller plus loin
+                        <span style="display: block; width: 60px; height: 3px; background: linear-gradient(90deg, #d63026, #ff6b6b); margin: 0.5rem auto 0; border-radius: 3px;"></span>
+                    </h2>
+                    
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label for="dream-date" style="display: block; margin-bottom: 0.8rem; font-weight: 500; color: #555; font-size: 1.1rem;">
+                            <i class="bi bi-stars" style="color: #ff9800; margin-right: 8px;"></i>
+                            Décris ton rendez-vous idéal :
+                        </label>
+                        <textarea id="dream-date" placeholder="Une journée parfaite avec toi, ce serait..." style="width: 100%; padding: 1rem 1.2rem; border: 2px solid #f0f0f0; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; min-height: 100px; resize: vertical; background: #fff;"></textarea>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label for="surprise" style="display: block; margin-bottom: 0.8rem; font-weight: 500; color: #555; font-size: 1.1rem;">
+                            <i class="bi bi-gift" style="color: #e91e63; margin-right: 8px;"></i>
+                            Une chose qui te ferait vraiment plaisir :
+                        </label>
+                        <textarea id="surprise" placeholder="Ex: Petit déjeuner au lit, massage..." style="width: 100%; padding: 1rem 1.2rem; border: 2px solid #f0f0f0; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; min-height: 100px; resize: vertical; background: #fff;"></textarea>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 2.5rem;">
+                        <label for="message" style="display: block; margin-bottom: 0.8rem; font-weight: 500; color: #555; font-size: 1.1rem;">
+                            <i class="bi bi-chat-heart" style="color: #c2185b; margin-right: 8px;"></i>
+                            Un petit mot doux pour finir ? <span class="heart" style="color: #ff6b6b;">💝</span>
+                        </label>
+                        <textarea id="message" placeholder="Écris-moi ce que tu veux..." style="width: 100%; padding: 1rem 1.2rem; border: 2px solid #f0f0f0; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; min-height: 120px; resize: vertical; background: #fff;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" style="display: block; width: 100%; max-width: 300px; margin: 0 auto; padding: 1rem 2rem; background: linear-gradient(45deg, #ff6b6b, #d63026); color: white; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(214, 48, 38, 0.3);">
+                        <i class="bi bi-send" style="margin-right: 8px;"></i> Envoyer mes réponses
+                    </button>
+                </section>
+            </form>
+
+            
+            <div id="thank-you" class="thank-you" style="display: none; text-align: center; padding: 2rem; background: linear-gradient(135deg, #fff9f9 0%, #fff 100%); border-radius: 15px; margin-top: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+                    <h2 style="font-family: 'Tangerine', cursive; font-size: 3rem; color: #d63026; margin-bottom: 1rem;">Merci d'avoir répondu ! <span class="heart">💖</span></h2>
+                    
+                    <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0; border-left: 4px solid #4caf50;">
+                        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+                            <i class="bi bi-check-circle" style="color: #4caf50; font-size: 1.5rem; margin-right: 0.5rem;"></i>
+                            <span style="font-weight: 600; color: #2e7d32;">Tes réponses ont bien été enregistrées !</span>
+                        </div>
+                        <p style="color: #2e7d32; margin: 0.5rem 0 0 0; font-size: 0.95rem;">
+                            Je vais les consulter avec attention pour préparer de belles surprises pour toi.
+                        </p>
+                    </div>
+                    
+                    <p style="color: #555; margin: 1.5rem 0; line-height: 1.6; font-size: 1.05rem;">
+                        J'ai hâte de découvrir tes réponses et de préparer des moments encore plus spéciaux pour toi.
+                        Chaque détail compte pour moi, car tu mérites le meilleur.
+                    </p>
+                    
+                    <p style="font-style: italic; color: #e91e63; margin: 2rem 0; font-weight: 500;">
+                        Je t'aime plus que tout au monde ! <span class="heart" style="font-size: 1.2em;">❤️</span>
+                    </p>
+                    
+                    <button id="modifyResponsesBtn" class="submit-btn" style="background: linear-gradient(45deg, #4caf50, #2e7d32); margin: 1rem auto; padding: 0.8rem 2rem; font-size: 1rem; border-radius: 30px; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);" onclick="return modifyResponses()">
+                        <i class="bi bi-pencil" style="margin-right: 8px;"></i> Modifier mes réponses
+                    </button>
+                    
+                    <p style="font-size: 0.9rem; color: #888; margin-top: 1.5rem;">
+                        Tu peux revenir modifier tes réponses à tout moment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </footer>
+
+    <!-- Bouton pour voir les réponses -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button onclick="showResponses()" style="background: #4a6cf7; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); touch-action: manipulation;">👁️</button>
+    </div>
+
+    <style>
+        /* Styles pour les étoiles de notation */
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        
+        .rating input {
+            display: none;
+        }
+        
+        .rating label {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #ddd;
+            transition: all 0.2s ease;
+            margin: 0 2px;
+        }
+        
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            color: #ffd700;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        .rating input:checked ~ label {
+            color: #ffd700;
+        }
+        
+        /* Style pour les champs de texte */
+        textarea:focus {
+            outline: none;
+            border-color: #ff6b6b !important;
+            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2) !important;
+        }
+        
+        /* Animation pour le bouton d'envoi */
+        .submit-btn {
+            transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(214, 48, 38, 0.4) !important;
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0) !important;
+        }
+    </style>
+    
+    <script>
+        // Gestion des sélections
+        let selectedOptions = {
+            sortie: null,
+            cuisine: null,
+            activite: null,
+            energie: null,
+            special: null,
+            ratings: {
+                resto: 0,
+                outdoor: 0,
+                home: 0
+            }
+        };
+        
+        // Initialisation des événements de notation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuration des étoiles de notation
+            setupRating('resto', 5);
+            setupRating('outdoor', 5);
+            setupRating('home', 5);
+            
+            // Charger les réponses sauvegardées
+            const savedResponses = localStorage.getItem('loveSurveyResponses');
+            if (savedResponses) {
+                const responses = JSON.parse(savedResponses);
+                // Restaurer les notes
+                if (responses.ratings) {
+                    selectedOptions.ratings = responses.ratings;
+                    updateRatingDisplays();
+                }
+            }
+
+            // Ajout des écouteurs d'événements pour les étoiles
+            document.querySelectorAll('.rating input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const prefix = this.name.split('-')[0];
+                    selectedOptions.ratings[prefix] = parseInt(this.value);
+                    saveResponses();
+                    updateRatingDisplays();
+                });
+            });
+        });
+        
+        function setupRating(prefix, maxRating) {
+            const container = document.querySelector(`.rating[data-rating="${prefix}"]`);
+            if (!container) return;
+            
+            // Ne pas réinitialiser le contenu pour conserver le HTML existant
+            container.setAttribute('data-rating', prefix);
+            
+            // Récupérer les éléments existants
+            let inputs = container.querySelectorAll('input[type="radio"]');
+            let labels = container.querySelectorAll('label');
+            
+            // Si les éléments n'existent pas, on les crée
+            if (inputs.length === 0) {
+                container.innerHTML = ''; // Nettoyer le conteneur
+                
+                for (let i = maxRating; i >= 1; i--) {
+                    const inputId = `${prefix}-${i}`;
+                    
+                    // Créer l'input radio
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.id = inputId;
+                    input.name = `${prefix}-rating`;
+                    input.value = i;
+                    input.style.display = 'none';
+                    
+                    // Ajouter l'événement change directement
+                    input.addEventListener('change', function() {
+                        selectedOptions.ratings = selectedOptions.ratings || {};
+                        selectedOptions.ratings[prefix] = parseInt(this.value);
+                        saveResponses();
+                        updateRatingDisplays();
+                    });
+                    
+                    // Créer le label correspondant
+                    const label = document.createElement('label');
+                    label.htmlFor = inputId;
+                    label.innerHTML = '★';
+                    label.title = `${i} ${i > 1 ? 'étoiles' : 'étoile'}`;
+                    label.style.cursor = 'pointer';
+                    label.style.fontSize = '1.8rem';
+                    label.style.color = '#ddd';
+                    label.style.transition = 'all 0.2s ease';
+                    label.style.margin = '0 2px';
+                    
+                    // Ajouter les éléments au conteneur
+                    container.appendChild(input);
+                    container.appendChild(label);
+                }
+                
+                // Mettre à jour les références après création
+                inputs = container.querySelectorAll('input[type="radio"]');
+                labels = container.querySelectorAll('label');
+            }
+            
+            // Ajouter des écouteurs d'événements pour le survol
+            labels.forEach((label, index) => {
+                label.addEventListener('mouseover', () => {
+                    if (!container.querySelector('input:checked')) {
+                        for (let i = 0; i <= index; i++) {
+                            labels[i].style.color = '#ffd700';
+                            labels[i].style.textShadow = '0 0 5px rgba(255, 215, 0, 0.5)';
+                        }
+                    }
+                });
+                
+                label.addEventListener('mouseout', () => {
+                    updateRatingDisplays();
+                });
+            });
+            
+            // Mettre à jour l'état initial des étoiles
+            updateRatingDisplays();
+        }
+        
+        function updateRatingDisplays() {
+            // Mettre à jour l'affichage des notes
+            const ratings = selectedOptions.ratings || {};
+            
+            // Parcourir tous les conteneurs d'étoiles
+            document.querySelectorAll('.rating[data-rating]').forEach(container => {
+                const prefix = container.getAttribute('data-rating');
+                const currentRating = ratings[prefix];
+                
+                // Mettre à jour l'état des inputs
+                const inputs = container.querySelectorAll('input[type="radio"]');
+                const labels = container.querySelectorAll('label');
+                
+                // Réinitialiser le style de toutes les étoiles
+                labels.forEach(label => {
+                    label.style.color = '#ddd';
+                    label.style.textShadow = 'none';
+                });
+                
+                // Si une note est définie, mettre à jour l'affichage
+                if (typeof currentRating === 'number' && currentRating > 0) {
+                    // Cocher l'input correspondant
+                    inputs.forEach(input => {
+                        input.checked = (parseInt(input.value) === currentRating);
+                    });
+                    
+                    // Mettre en surbrillance les étoiles correspondantes
+                    labels.forEach(label => {
+                        const starValue = parseInt(label.htmlFor.split('-').pop());
+                        if (starValue <= currentRating) {
+                            label.style.color = '#ffd700';
+                            label.style.textShadow = '0 0 5px rgba(255, 215, 0, 0.5)';
+                        }
+                    });
+                } else {
+                    // Aucune note sélectionnée, tout décocher
+                    inputs.forEach(input => {
+                        input.checked = false;
+                    });
+                }
+            });
+            
+            // Mettre à jour l'affichage des options sélectionnées
+            Object.entries(selectedOptions).forEach(([key, value]) => {
+                if (key === 'ratings') return;
+                
+                const options = document.querySelectorAll(`.survey-option[onclick*="${key}"]`);
+                options.forEach(option => {
+                    const isSelected = option.classList.contains('selected');
+                    const checkmark = option.querySelector('.checkmark');
+                    const checkIcon = option.querySelector('.checkmark i');
+                    
+                    if (isSelected) {
+                        checkmark.style.backgroundColor = '#4CAF50';
+                        checkIcon.style.display = 'block';
+                    } else {
+                        checkmark.style.backgroundColor = 'transparent';
+                        checkIcon.style.display = 'none';
+                    }
+                });
+            });
+        }
+        
+        function selectOption(element, category) {
+            // Désélectionner l'option précédente de la même catégorie
+            const options = document.querySelectorAll(`.survey-option[onclick*="${category}"]`);
+            options.forEach(opt => {
+                if (opt !== element) {
+                    opt.classList.remove('selected');
+                    opt.querySelector('.checkmark').style.backgroundColor = 'transparent';
+                    opt.querySelector('.checkmark i').style.display = 'none';
+                }
+            });
+            
+            // Basculer la sélection
+            const wasSelected = element.classList.contains('selected');
+            element.classList.toggle('selected');
+            
+            // Mettre à jour le style du checkmark
+            const checkmark = element.querySelector('.checkmark');
+            if (element.classList.contains('selected')) {
+                selectedOptions[category] = element;
+                checkmark.style.backgroundColor = '#4CAF50';
+                checkmark.querySelector('i').style.display = 'block';
+            } else {
+                selectedOptions[category] = null;
+                checkmark.style.backgroundColor = 'transparent';
+                checkmark.querySelector('i').style.display = 'none';
+            }
+            
+            // Sauvegarder les réponses
+            saveResponses();
+        }
+
+        // Easter Egg
+        let eggClickCount = 0;
+        const secretMessages = [
+            "Tu es la personne la plus incroyable que je connaisse ❤️",
+            "Chaque jour avec toi est un cadeau 🎁",
+            "Ton sourire rend mes journées plus belles 😊",
+            "Je t'aime plus qu'hier, moins que demain 💕",
+            "Tu es ma raison de sourire chaque matin ☀️",
+            "Merci d'être toi, tout simplement 💝"
+        ];
+        
+        function revealEasterEgg() {
+            eggClickCount++;
+            const eggMessage = document.getElementById('easter-egg-message');
+            
+            if (eggClickCount === 3) {
+                eggMessage.innerHTML = "<p>Je t'aime à l'infini et au-delà... Tu es la meilleure chose qui me soit arrivée. ❤️</p>";
+                eggMessage.style.display = 'block';
+                eggClickCount = 0;
+                showConfetti();
+            } else if (eggClickCount === 2) {
+                const randomMessage = secretMessages[Math.floor(Math.random() * secretMessages.length)];
+                eggMessage.innerHTML = `<p>${randomMessage}</p>`;
+                eggMessage.style.display = 'block';
+            }
+            
+            // Fonction pour sauvegarder les réponses
+            function saveResponses() {
+                const responses = {
+                    sortie: selectedOptions.sortie ? selectedOptions.sortie.querySelector('h4').textContent : null,
+                    cuisine: selectedOptions.cuisine ? selectedOptions.cuisine.querySelector('h4').textContent : null,
+                    activite: selectedOptions.activite ? selectedOptions.activite.querySelector('h4').textContent : null,
+                    energie: selectedOptions.energie ? selectedOptions.energie.querySelector('h4').textContent : null,
+                    special: selectedOptions.special ? selectedOptions.special.querySelector('h4').textContent : null,
+                    ratings: {
+                        resto: selectedOptions.ratings.resto,
+                        outdoor: selectedOptions.ratings.outdoor,
+                        home: selectedOptions.ratings.home
+                    },
+                    dreamDate: document.getElementById('dream-date').value,
+                    surprise: document.getElementById('surprise').value,
+                    message: document.getElementById('message').value,
+                    lastUpdated: new Date().toISOString()
+                };
+                
+                // Sauvegarder dans le stockage local
+                localStorage.setItem('loveSurveyResponses', JSON.stringify(responses));
+                
+                // Afficher un message de confirmation
+                const confirmation = document.createElement('div');
+                confirmation.textContent = 'Réponses enregistrées avec succès !';
+                confirmation.style.position = 'fixed';
+                confirmation.style.bottom = '20px';
+                confirmation.style.right = '20px';
+                confirmation.style.background = '#4CAF50';
+                confirmation.style.color = 'white';
+                confirmation.style.padding = '10px 20px';
+                confirmation.style.borderRadius = '5px';
+                confirmation.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                confirmation.style.zIndex = '1000';
+                document.body.appendChild(confirmation);
+                
+                // Supprimer le message après 3 secondes
+                setTimeout(() => {
+                    confirmation.remove();
+                }, 3000);
+                
+                // Afficher dans la console pour le débogage
+                console.log('Réponses enregistrées :', responses);
+                
+                return responses;
+            }
+
+        // Fonction pour restaurer les réponses sauvegardées
+        function restoreSavedResponses() {
+            console.log('Début de la restauration des réponses');
+            const savedResponses = JSON.parse(localStorage.getItem('loveSurveyResponses')) || {};
+            console.log('Réponses trouvées dans le stockage local:', savedResponses);
+            if (Object.keys(savedResponses).length === 0) {
+                console.log('Aucune réponse à restaurer');
+                return;
+            }
+
+            console.log('Restauration des réponses:', savedResponses);
+
+            // Restaurer les sélections
+            for (const [section, value] of Object.entries(savedResponses)) {
+                if (section === 'lastUpdated') continue;
+                
+                console.log(`Traitement de la section: ${section}`, value);
+                
+                if (Array.isArray(value)) {
+                    // Pour les sélections multiples
+                    value.forEach(item => {
+                        // Essayer plusieurs sélecteurs pour trouver l'élément
+                        const selectors = [
+                            `[data-value*="${item}"][onclick*="${section}"]`,
+                            `[onclick*="${section}"][onclick*="${item}"]`,
+                            `[onclick*="${section}"]:contains('${item}')`
+                        ];
+                        
+                        let element;
+                        for (const selector of selectors) {
+                            element = document.querySelector(selector);
+                            if (element) break;
+                        }
+                        
+                        if (element) {
+                            console.log(`Sélection trouvée: ${section} - ${item}`);
+                            element.classList.add('selected');
+                            element.style.backgroundColor = '#f0f8ff';
+                            // Mettre à jour l'état dans selectedOptions
+                            if (!selectedOptions[section]) {
+                                selectedOptions[section] = [];
+                            }
+                            if (!selectedOptions[section].includes(item)) {
+                                selectedOptions[section].push(item);
+                            }
+                        } else {
+                            console.warn(`Élément non trouvé: ${section} - ${item}`);
+                        }
+                    });
+                } else if (typeof value === 'object' && value !== null) {
+                    // Pour les notes d'étoiles
+                    for (const [key, val] of Object.entries(value)) {
+                        const ratingInput = document.querySelector(`input[name="${key}-rating"][value="${val}"]`);
+                        if (ratingInput) {
+                            ratingInput.checked = true;
+                            // Mettre à jour l'état dans selectedOptions
+                            if (!selectedOptions.ratings) {
+                                selectedOptions.ratings = {};
+                            }
+                            selectedOptions.ratings[key] = val;
+                        }
+                    }
+                }
+            }
+            
+            // Mettre à jour les affichages
+            if (typeof updateRatingDisplays === 'function') {
+                updateRatingDisplays();
+            }
+        }
+
+        // Gestion de la soumission du formulaire
+        function showThankYou(event) {
+            console.log('Début de la fonction showThankYou');
+            if (event) event.preventDefault();
+            
+            if (validateForm()) {
+                console.log('Formulaire valide, enregistrement des réponses...');
+                
+                // Sauvegarder d'abord les réponses
+                const saved = saveResponses();
+                console.log('Réponses enregistrées:', saved);
+                
+                // Masquer le formulaire
+                const form = document.getElementById('loveSurvey');
+                if (form) form.style.display = 'none';
+                
+                // Afficher le message de remerciement
+                const thankYou = document.getElementById('thank-you');
+                if (thankYou) {
+                    thankYou.style.display = 'block';
+                    // Faire défiler jusqu'au message
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        thankYou.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
+            }
+        }
+        
+        // Fonction pour valider le formulaire avant soumission
+        function validateForm() {
+            // Vérifier si au moins une option est sélectionnée dans chaque section
+            const requiredSections = ['sortie', 'cuisine', 'activite', 'energie', 'special'];
+            
+            // Initialiser selectedOptions s'il n'existe pas
+            if (typeof selectedOptions === 'undefined') {
+                selectedOptions = {};
+            }
+            
+            for (const section of requiredSections) {
+                if (!selectedOptions[section] || selectedOptions[section].length === 0) {
+                    alert(`Veuillez sélectionner une option dans la section "${getSectionName(section)}"`);
+                    const element = document.querySelector(`[onclick*="${section}"]`);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return false;
+                }
+            }
+            
+            // Vérifier si les notes ont été attribuées
+            const ratings = selectedOptions.ratings || {};
+            const requiredRatings = ['resto', 'outdoor', 'home'];
+            
+            for (const rating of requiredRatings) {
+                if (typeof ratings[rating] === 'undefined' || ratings[rating] === null) {
+                    alert('Veuillez noter toutes les activités proposées');
+                    document.querySelector(`[data-rating="${rating}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        // Fonction utilitaire pour obtenir le nom d'une section
+        function getSectionName(section) {
+            const sectionNames = {
+                'sortie': 'Type de sortie',
+                'cuisine': 'Cuisine préférée',
+                'activite': 'Activités préférées',
+                'energie': 'Niveau d\'énergie',
+                'special': 'Moments spéciaux'
+            };
+            return sectionNames[section] || section;
+        }
+        
+        
+        // Fonction pour mettre à jour l'affichage des étoiles
+        function updateStarDisplay(stars, selectedValue) {
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-value'));
+                const input = star.previousElementSibling;
+                if (starValue <= selectedValue) {
+                    input.checked = true;
+                } else {
+                    input.checked = false;
+                }
+            });
+        }
+
+        // Fonction pour initialiser les étoiles de notation
+        function initRatingStars() {
+            // Ajouter des attributs data-value aux étoiles
+            document.querySelectorAll('.rating').forEach(rating => {
+                const stars = rating.querySelectorAll('label');
+                stars.forEach((star, index) => {
+                    star.setAttribute('data-value', index + 1);
+                });
+            });
+
+            // Gestion des étoiles au survol
+            document.querySelectorAll('.rating label').forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const ratingContainer = this.closest('.rating');
+                    const stars = ratingContainer.querySelectorAll('label');
+                    const hoverValue = parseInt(this.getAttribute('data-value'));
+                    
+                    // Mettre en surbrillance les étoiles survolées
+                    stars.forEach(s => {
+                        const starValue = parseInt(s.getAttribute('data-value'));
+                        if (starValue <= hoverValue) {
+                            s.style.transform = 'scale(1.15)';
+                        } else {
+                            s.style.transform = 'scale(1)';
+                        }
+                    });
+                });
+
+                // Gestion du clic sur une étoile
+                star.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const ratingContainer = this.closest('.rating');
+                    const stars = ratingContainer.querySelectorAll('label');
+                    const display = ratingContainer.querySelector('.rating-text');
+                    const value = input.value;
+                    
+                    // Mettre à jour l'affichage des étoiles
+                    updateStarDisplay(stars, value);
+                    
+                    // Mettre à jour le texte d'affichage
+                    if (display) {
+                        display.textContent = value > 0 ? `${value} étoile${value > 1 ? 's' : ''}` : 'Non noté';
+                        display.style.color = '#ff9800';
+                        display.style.fontWeight = '600';
+                        
+                        // Animation du texte
+                        display.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            display.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                    
+                    // Sauvegarder la réponse
+                    saveResponses();
+                });
+
+                // Réinitialisation au survol en dehors
+                star.addEventListener('mouseout', function() {
+                    const ratingContainer = this.closest('.rating');
+                    const checkedInput = ratingContainer.querySelector('input:checked');
+                    const stars = ratingContainer.querySelectorAll('label');
+                    
+                    if (checkedInput) {
+                        const checkedValue = parseInt(checkedInput.value);
+                        updateStarDisplay(stars, checkedValue);
+                    } else {
+                        stars.forEach(s => {
+                            s.style.color = '#e0e0e0';
+                            s.style.textShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                            s.style.transform = 'scale(1)';
+                        });
+                    }
+                });
+            });
+
+            // Gestion du clic sur une étoile (pour les appareils tactiles)
+            document.querySelectorAll('.rating input[type="radio"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    const ratingContainer = this.closest('.rating');
+                    const stars = ratingContainer.querySelectorAll('label');
+                    const display = ratingContainer.querySelector('.rating-text');
+                    const value = this.value;
+                    
+                    // Mettre à jour l'affichage des étoiles
+                    updateStarDisplay(stars, value);
+                    
+                    // Mettre à jour le texte d'affichage
+                    if (display) {
+                        display.textContent = value > 0 ? `${value} étoile${value > 1 ? 's' : ''}` : 'Non noté';
+                        display.style.color = '#ff9800';
+                        display.style.fontWeight = '600';
+                        
+                        // Animation du texte
+                        display.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            display.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                });
+            });
+        }
+
+        // Mot de passe admin (à changer pour quelque chose de plus sécurisé en production)
+        const ADMIN_PASSWORD = "amour123";
+        
+        // Fonction pour vérifier le mot de passe admin
+        function checkAdminPassword() {
+            const password = document.getElementById('admin-password').value;
+            const responsesContainer = document.getElementById('responses-container');
+            
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById('admin-password').style.borderColor = '#4caf50';
+                responsesContainer.style.display = 'block';
+                loadResponses();
+            } else {
+                document.getElementById('admin-password').style.borderColor = '#f44336';
+                responsesContainer.style.display = 'none';
+                alert('Mot de passe incorrect');
+            }
+        }
+        
+        // Fonction pour charger les réponses
+        function loadResponses() {
+            const responses = JSON.parse(localStorage.getItem('loveSurveyResponses')) || {};
+            const responsesList = document.getElementById('responses-list');
+            responsesList.innerHTML = '';
+            
+            if (Object.keys(responses).length === 0) {
+                responsesList.innerHTML = '<p style="color: #666; text-align: center;">Aucune réponse enregistrée pour le moment.</p>';
+                return;
+            }
+            
+            // Afficher les réponses
+            for (const [section, value] of Object.entries(responses)) {
+                if (section === 'lastUpdated') continue;
+                
+                const sectionDiv = document.createElement('div');
+                sectionDiv.style.marginBottom = '15px'; 
+                sectionDiv.style.padding = '10px';
+                sectionDiv.style.background = '#f9f9f9';
+                sectionDiv.style.borderRadius = '5px';
+                
+                let content = `<strong style="display: block; margin-bottom: 5px; color: #333;">${section.charAt(0).toUpperCase() + section.slice(1)}:</strong>`;
+                
+                if (Array.isArray(value)) {
+                    content += value.map(item => `• ${item}`).join('<br>');
+                } else if (typeof value === 'object' && value !== null) {
+                    content += Object.entries(value).map(([key, val]) => 
+                        `• ${key}: ${val} étoile${val > 1 ? 's' : ''}`
+                    ).join('<br>');
+                } else {
+                    content += value;
+                }
+                
+                sectionDiv.innerHTML = content;
+                responsesList.appendChild(sectionDiv);
+            }
+            
+            // Afficher la date de dernière mise à jour
+            if (responses.lastUpdated) {
+                const date = new Date(responses.lastUpdated);
+                const dateDiv = document.createElement('div');
+                dateDiv.style.marginTop = '10px';
+                dateDiv.style.fontSize = '0.85em';
+                dateDiv.style.color = '#888';
+                dateDiv.style.textAlign = 'right';
+                dateDiv.textContent = `Dernière mise à jour: ${date.toLocaleString()}`;
+                responsesList.appendChild(dateDiv);
+            }
+        }
+        
+        // Fonction pour exporter les réponses en CSV
+        function exportToCSV() {
+            const responses = JSON.parse(localStorage.getItem('loveSurveyResponses')) || {};
+            let csvContent = "data:text/csv;charset=utf-8,";
+            
+            // Créer l'en-tête CSV
+            const headers = ['Section', 'Valeur'];
+            csvContent += headers.join(',') + '\r\n';
+            
+            // Ajouter les données
+            for (const [section, value] of Object.entries(responses)) {
+                if (section === 'lastUpdated') {
+                    csvContent += `"${section}","${value}"\r\n`;
+                } else if (Array.isArray(value)) {
+                    value.forEach(item => {
+                        csvContent += `"${section}","${item}"\r\n`;
+                    });
+                } else if (typeof value === 'object' && value !== null) {
+                    for (const [key, val] of Object.entries(value)) {
+                        csvContent += `"${section} - ${key}","${val}"\r\n`;
+                    }
+                } else {
+                    csvContent += `"${section}","${value}"\r\n`;
+                }
+            }
+            
+            // Créer et déclencher le téléchargement
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `reponses_sondage_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Fonction simple pour afficher/masquer l'admin
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            if (!panel) return;
+            
+            if (panel.style.display === 'none' || !panel.style.display) {
+                panel.style.display = 'block';
+                // Recharger les réponses quand on ouvre le panneau
+                if (typeof loadResponses === 'function') {
+                    loadResponses();
+                }
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+        
+        // Fonction pour afficher les réponses
+        function showResponses() {
+            const responses = JSON.parse(localStorage.getItem('loveSurveyResponses') || '{}');
+            if (Object.keys(responses).length === 0) {
+                alert('Aucune réponse enregistrée pour le moment.');
+                return;
+            }
+            
+            // Créer une fenêtre modale
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '50%';
+            modal.style.left = '50%';
+            modal.style.transform = 'translate(-50%, -50%)';
+            modal.style.backgroundColor = 'white';
+            modal.style.padding = '20px';
+            modal.style.borderRadius = '10px';
+            modal.style.boxShadow = '0 5px 30px rgba(0,0,0,0.3)';
+            modal.style.zIndex = '1001';
+            modal.style.maxWidth = '90%';
+            modal.style.maxHeight = '80vh';
+            modal.style.overflowY = 'auto';
+            
+            // Ajouter le contenu
+            let content = '<h3 style="margin-top: 0; color: #333;">Réponses enregistrées</h3>';
+            
+            for (const [section, value] of Object.entries(responses)) {
+                if (section === 'lastUpdated') continue;
+                content += `<div style="margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 5px;">`;
+                content += `<strong>${section}:</strong> ${JSON.stringify(value, null, 2)}`;
+                content += `</div>`;
+            }
+            
+            // Ajouter la date de dernière modification
+            if (responses.lastUpdated) {
+                content += `<div style="margin-top: 15px; font-size: 0.9em; color: #666; text-align: right;">`;
+                content += `Dernière mise à jour: ${new Date(responses.lastUpdated).toLocaleString()}`;
+                content += `</div>`;
+            }
+            
+            // Ajouter un bouton pour fermer
+            content += `
+                <div style="margin-top: 20px; text-align: right;">
+                    <button onclick="this.parentNode.parentNode.remove()" style="background: #f44336; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">
+                        Fermer
+                    </button>
+                </div>
+            `;
+            
+            modal.innerHTML = content;
+            document.body.appendChild(modal);
+            
+            // Ajouter un overlay
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            overlay.style.zIndex = '1000';
+            overlay.onclick = () => {
+                modal.remove();
+                overlay.remove();
+            };
+            document.body.appendChild(overlay);
+        }
+        
+        // Fonction simple pour modifier les réponses
+        function modifyResponses() {
+            console.log('Bouton Modifier cliqué');
+            
+            // 1. Afficher le formulaire
+            const form = document.getElementById('loveSurvey');
+            if (!form) {
+                console.error('ERREUR: Le formulaire est introuvable');
+                return false;
+            }
+            
+            // 2. Masquer le message de remerciement
+            const thankYou = document.getElementById('thank-you');
+            if (thankYou) {
+                thankYou.style.display = 'none';
+                console.log('Message de remerciement masqué');
+            }
+            
+            // 3. Afficher le formulaire
+            form.style.display = 'block';
+            console.log('Formulaire affiché');
+            
+            // 4. Restaurer les réponses
+            if (typeof restoreSavedResponses === 'function') {
+                try {
+                    console.log('Restauration des réponses en cours...');
+                    restoreSavedResponses();
+                    console.log('Restauration des réponses terminée');
+                } catch (e) {
+                    console.error('Erreur lors de la restauration:', e);
+                }
+            } else {
+                console.error('Erreur: Fonction restoreSavedResponses non trouvée');
+            }
+            
+            // 5. Faire défiler vers le haut
+            console.log('Défilement vers le haut...');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // 6. Faire défiler vers le formulaire
+            setTimeout(() => {
+                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+            
+            // Empêcher le comportement par défaut
+            return false;
+        }
+        
+        // Au chargement de la page, initialiser les étoiles de notation et charger les réponses sauvegardées
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== PAGE CHARGÉE ===');
+            
+            // Configurer le bouton de modification
+            const modifyBtn = document.getElementById('modifyResponsesBtn');
+            console.log('Bouton Modifier trouvé:', !!modifyBtn);
+            
+            if (modifyBtn) {
+                // Supprimer tout gestionnaire existant pour éviter les doublons
+                modifyBtn.removeEventListener('click', handleModifyClick);
+                // Ajouter le gestionnaire d'événement
+                modifyBtn.addEventListener('click', handleModifyClick);
+                console.log('Gestionnaire d\'événement ajouté au bouton Modifier');
+            }
+            // Initialisation des éléments d'admin
+            const adminPanel = document.getElementById('adminPanel');
+            if (adminPanel) {
+                adminPanel.style.display = 'none';
+            }
+            
+            // La gestion du bouton est maintenant dans la fonction setupModifyButton()
+            initRatingStars();
+            // Cacher le message de remerciement au chargement
+            const thankYouDiv = document.getElementById('thank-you');
+            if (thankYouDiv) {
+                thankYouDiv.style.display = 'none';
+            }
+            
+            // Afficher le formulaire s'il était caché
+            const form = document.getElementById('loveSurvey');
+            if (form) {
+                form.style.display = 'block';
+            }
+            // Initialiser les étoiles de notation
+            setupRating('resto', 5);
+            setupRating('cinema', 5);
+            setupRating('sortie', 5);
+            setupRating('maison', 5);
+            
+            // Charger les réponses sauvegardées si elles existent
+            const savedResponses = localStorage.getItem('loveSurveyResponses');
+            if (savedResponses) {
+                const responses = JSON.parse(savedResponses);
+                // Restaurer les sélections
+                Object.entries(responses).forEach(([key, value]) => {
+                    if (key.startsWith('rating_')) {
+                        const rating = parseInt(value);
+                        const prefix = key.replace('rating_', '');
+                        document.querySelector(`.rating[data-rating="${prefix}"]`).setAttribute('data-rating', rating);
+                        updateRatingDisplays();
+                    } else {
+                        const elements = document.querySelectorAll(`[data-category="${key}"]`);
+                        elements.forEach(el => {
+                            if (el.textContent.trim() === value) {
+                                el.classList.add('selected');
+                            }
+                        });
+                    }
+                });
+            }
+            setupRating('resto', 5);
+            setupRating('outdoor', 5);
+            setupRating('home', 5);
+            
+            // Charger les réponses sauvegardées
+            const savedResponses = localStorage.getItem('loveSurveyResponses');
+            if (savedResponses) {
+                try {
+                    const responses = JSON.parse(savedResponses);
+                    console.log('Réponses précédentes :', responses);
+                    
+                    // Mettre à jour les sélections
+                    if (responses.ratings) {
+                        selectedOptions.ratings = responses.ratings;
+                        updateRatingDisplays();
+                    }
+                    
+                    // Restaurer les autres sélections
+                    ['sortie', 'cuisine', 'activite', 'energie', 'special'].forEach(section => {
+                        if (responses[section]) {
+                            const option = Array.from(document.querySelectorAll(`.survey-option[onclick*="${section}"]`)).find(
+                                el => el.querySelector('h4')?.textContent.trim() === responses[section]
+                            );
+                            if (option) {
+                                selectOption(option, section);
+                            }
+                        }
+                    });
+                    
+                    // Restaurer les champs de texte
+                    if (responses.dreamDate) {
+                        document.getElementById('dream-date').value = responses.dreamDate;
+                    }
+                    if (responses.surprise) {
+                        document.getElementById('surprise').value = responses.surprise;
+                    }
+                    if (responses.message) {
+                        document.getElementById('message').value = responses.message;
+                    }
+                } catch (e) {
+                    console.error('Erreur lors du chargement des réponses :', e);
+                }
+            }
+            
+            // Ajouter un écouteur d'événement pour le formulaire
+            const form = document.getElementById('loveSurvey');
+            if (form) {
+                form.onsubmit = showThankYou;
+            }
+            
+            // Ajouter des écouteurs d'événements pour les étoiles
+            document.querySelectorAll('.rating input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const prefix = this.name.split('-')[0];
+                    selectedOptions.ratings = selectedOptions.ratings || {};
+                    selectedOptions.ratings[prefix] = parseInt(this.value);
+                    saveResponses();
+                    updateRatingDisplays();
+                });
+            });
+        });
+    </script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

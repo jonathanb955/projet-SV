@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Souvenirs - Notre Histoire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Sacramento&family=Allura&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tF/mJ8O5IwCJ2L0A/XYE="
+          crossorigin=""/>
+    <link rel="stylesheet" href="souvenirs.css">
+    <link rel="stylesheet" href="souvenirs-mobile.css" media="(max-width: 768px)">
+    <style>
+        /* Styles pour la carte */
+        #memoryMap {
+            height: 500px;
+            width: 90%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #d63026;
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+        
+        .leaflet-container {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 15px !important;
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="header-left">
+        <button class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <span class="nav-text">menu</span>
+    </div>
+
+    <div class="header-center">
+        <div class="logo-container">
+            <img src="https://png.pngtree.com/png-clipart/20230411/original/pngtree-heart-logo-png-image_9047687.png" alt="Asian Store" class="logo-brand">
+        </div>
+    </div>
+
+    <div class="header-right">
+        <a href="index.html" style="text-decoration: none; color: #c93026; font-weight: 700; font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s ease; display: inline-flex; align-items: center; margin-right: 15px; line-height: 1.2;">
+            <div style="text-align: right; margin-right: 8px;">
+                <div>Retour à</div>
+                <div>l'accueil</div>
+            </div>
+            <i class="bi bi-box-arrow-in-left" style="font-size: 1.2rem; margin-left: 5px; transition: transform 0.3s ease;"></i>
+        </a>
+        <a href="#" class="social-icon" aria-label="Cœur">
+            <i class="bi bi-tux" style="color: #ff4d6d; font-size: 1.8rem;"></i>
+        </a>
+    </div>
+    <div class="wavy-decoration"></div>
+</header>
+
+    <section class="hero-section">
+        <!-- Vidéo en arrière-plan -->
+        <div class="video-background">
+            <video autoplay muted loop playsinline>
+                <source src="https://v1.pinimg.com/videos/iht/expMp4/65/6c/97/656c97fbff059b9353438ad968c5403f_720w.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="floating-text text-joie">Nos</div>
+            <div class="floating-text text-elegance">Souvenirs</div>
+            <div class="floating-text text-day">Précieux</div>
+            <div class="hero-buttons">
+                <a href="#map" class="btn-reserve">Voir la carte</a>
+                <a href="#memories" class="btn-reserve btn-outline">Voir les souvenirs</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="map" class="map-section" style="padding: 50px 0; background: #f8f9fa;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+            <h2 style="text-align: center; font-family: 'Tangerine', cursive; font-size: 3rem; color: #333; margin-bottom: 20px;">
+                Notre Carte des Souvenirs
+            </h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.6;">
+                Découvrez les endroits qui ont marqué notre histoire. Chaque marqueur représente un moment spécial partagé ensemble.
+            </p>
+            <div id="memoryMap" style="height: 500px; width: 100%; max-width: 1000px; margin: 0 auto; border: 2px solid #d63026; border-radius: 10px; overflow: hidden;">
+                <!-- La carte sera insérée ici par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="memories" class="memories-section">
+        <div class="section-inner">
+            <h2 class="section-title">Nos Moments Inoubliables</h2>
+            <p class="section-subtitle" style="max-width: 800px; margin: 0 auto 3rem; color: #666; font-size: 1.1rem; line-height: 1.6; padding: 0 1rem;">
+                Retrouvez ici tous nos plus beaux souvenirs ensemble.
+            </p>
+            <div class="memories-container">
+                <!-- Les souvenirs seront ajoutés ici par JavaScript -->
+            </div>
+        </div>
+    </section>
+    <footer style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%); color: white; text-align: center; padding: 4rem 1rem; margin-top: 4rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="font-family: 'Tangerine', cursive; font-size: 2.8rem; margin-bottom: 1.5rem; color: white;">Notre histoire continue...</h3>
+            <p style="max-width: 600px; margin: 0 auto 2rem; line-height: 1.8; font-size: 1.1rem; opacity: 0.9;">
+                Merci de faire partie de cette belle aventure. Chaque jour à tes côtés est un nouveau chapitre qui s'écrit.
+            </p>
+            <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                <a href="index.html" class="btn-reserve" style="background: white; color: #ff6b6b; margin: 0.5rem;">
+                    <i class="fas fa-home"></i> Retour à l'accueil
+                </a>
+                <a href="#" class="btn-reserve" style="background: transparent; border: 2px solid white; margin: 0.5rem;">
+                    <i class="fas fa-arrow-up"></i> Haut de page
+                </a>
+            </div>
+            <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.8;">
+                © 2024 Notre Histoire. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Carte OpenStreetMap intégrée directement -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mapElement = document.getElementById('memoryMap');
+            if (mapElement) {
+                mapElement.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-5.2,41.3,9.6,51.2&layer=mapnik&marker=48.8566,2.3522"
+                        style="border: 1px solid #d63026; border-radius: 10px;">
+                    </iframe>
+                    <br/>
+                    <small>
+                        <a href="https://www.openstreetmap.org/?mlat=48.86&mlon=2.35#map=6/46.2276/2.2137">
+                            Voir la carte en grand
+                        </a>
+            }
+        });
+    </script>
+    
+    <!-- Charger le script des souvenirs à la fin du body -->
+    <script src="js/menu.js"></script>
+    <script src="souvenirs.js"></script>
+    <script>
+        // S'assurer que le menu est fermé au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            closeMobileMenu();
+        });
+    </script>
+    <script>
+        // Initialisation de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Chargement de la page des souvenirs...');
+            
+            // Création du menu hamburger
+            const menuElement = document.querySelector('.burger-menu');
+            const navElement = document.querySelector('.nav-container');
+            if (menuElement && navElement) {
+                menuElement.addEventListener('click', function() {
+                    navElement.classList.toggle('nav-active');
+            const mapElement = document.getElementById('memoryMap');
+            if (mapElement) {
+                mapElement.addEventListener('wheel', function(e) {
+                    e.stopPropagation();
+                });
+            }
+            
+            // Gestion du défilement fluide pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#' || targetId === '#!') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Mise à jour de l'URL sans rechargement de la page
+                        history.pushState(null, '', targetId);
+                    }
+                });
+            });
+            
+            // Afficher les souvenirs
+            if (typeof displayMemories === 'function') {
+                displayMemories();
+            }
+            
+            // Activer les animations de défilement
+            if (typeof handleScrollAnimations === 'function') {
+                handleScrollAnimations();
+            }
+        });
+    </script>
+</body>
+</html>

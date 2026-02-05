@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Page spéciale avec une belle animation et une douce musique">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff6b6b">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Romantic Web</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/jpg" href="assets/img/headerLogo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Sacramento&family=Allura&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+</head>
+<body>
+<script>
+// Empêcher le défilement automatique
+window.addEventListener('DOMContentLoaded', function() {
+    // Supprimer le hash de l'URL sans faire défiler
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
+    // Forcer le défilement vers le haut
+    window.scrollTo(0, 0);
+    
+    // S'assurer que le défilement reste en haut après un court délai
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 0);
+});
+</script>
+
+<!-- Lecteur audio -->
+<audio id="backgroundMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Votre navigateur ne supporte pas l'élément audio.
+</audio>
+
+<header class="site-header">
+    <div class="header-left">
+        <button class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <span class="nav-text">menu</span>
+    </div>
+
+    <div class="header-center">
+        <div class="logo-container">
+            <img src="https://png.pngtree.com/png-clipart/20230411/original/pngtree-heart-logo-png-image_9047687.png" alt="Asian Store" class="logo-brand">
+        </div>
+    </div>
+
+    <div class="header-right">
+        <a href="souvenirs.html" class="btn-reserve" style="display: flex; flex-direction: column; align-items: center; line-height: 1.2; margin-right: 15px;">
+            <span>Nos</span>
+            <span>Souvenirs</span>
+        </a>
+        <a href="#contact" class="btn-reserve" style="display: flex; flex-direction: column; align-items: center; line-height: 1.2;">
+            <span>For</span>
+            <span>Xu Chen</span>
+        </a>
+        <a href="#" class="social-icon" aria-label="Cœur">
+            <i class="bi bi-tux" style="color: #ff4d6d; font-size: 1.8rem;"></i>
+        </a>
+    </div>
+    <div class="wavy-decoration"></div>
+</header>
+
+<!-- Menu Mobile -->
+<div id="mobileMenu" class="mobile-menu">
+    <a href="index.html">Accueil</a>
+    <a href="souvenirs.html">Nos Souvenirs</a>
+    <a href="sondage-amour.html">Sondage d'Amour</a>
+    <a href="#" id="viewResponsesBtn" onclick="if(typeof showResponses === 'function') showResponses(); return false;">Voir les Réponses</a>
+</div>
+<div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+
+<section class="hero-section">
+    <div class="floating-text text-joie">Happy</div>
+    <div class="floating-text text-elegance">Valentine's</div>
+    <div class="floating-text text-day">Day</div>
+</section>
+
+
+
+<div class="bottom-banner">
+    <p>DE LA PART DE TON NEUILLE PREFÉRÉ</p>
+</div>
+
+<section class="love-letter">
+    <div class="vertical-line left-line"></div>
+    <div class="vertical-line right-line"></div>
+    <div class="letter">
+        <div class="letter-content">
+            <div id="messageContainer" style="display: none; color: black;">
+                <p class="message" id="editableMessage" style="color: black;">Joyeuse Saint-Valentin à la personne la plus reloue que je connaisse.<br>
+
+C'est quand même incroyable : on se parle à peine en ce moment, c'est tendu, tu me saoules... et pourtant, c'est quand même à toi que je pense aujourd'hui. <br></br>T'as de la chance que je t'aime bien, Xu Chen, parce que franchement, t'es pas facile à suivre.<br> Reviens un peu, c'est nul sans tes conneries.</p>
+                <div id="editControls" style="text-align: right; margin-top: 10px; position: relative; z-index: 1000;">
+                    <button id="lockButton" style="padding: 8px 15px; background: #ff6b6b; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; position: relative; z-index: 1001; pointer-events: auto;">Verrouiller</button>
+                </div>
+            </div>
+            
+            <div id="passwordPrompt" style="text-align: center; padding: 20px;">
+                <p style="margin-bottom: 15px; font-style: italic; color: black;">Entrez le mot de passe pour voir le message</p>
+                <input type="password" id="passwordInput" placeholder="Mot de passe" style="padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <button id="unlockButton" style="padding: 8px 15px; background: #ff6b6b; color: white; border: none; border-radius: 4px; cursor: pointer;">Voir le message</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="combined-section" style="padding: 4rem 1rem; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1;">
+        <video autoplay muted loop playsinline style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; opacity: 0.8;">
+            <source src="https://v1.pinimg.com/videos/iht/expMp4/d7/33/2e/d7332e9da2bcfb9394bdc200a86f5b6f_720w.mp4" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.4);"></div>
+    </div>
+    <div class="container" style="width: 100%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: stretch;">
+        <div class="relationship-counters" style="flex: 1; min-width: 300px; max-width: 600px; background: rgba(255, 255, 255, 0.7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(255, 105, 140, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(255, 105, 140, 0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(255, 105, 140, 0.1)'">
+            <h3 style="color: #ff6b6b; font-size: 2.2rem; margin-bottom: 2rem; font-family: 'Tangerine', cursive; font-weight: 700; text-align: center;">Notre histoire dure déjà</h3>
+            <div class="counter-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 0 auto 2rem; width: 100%; max-width: 500px;">
+                <div class="counter-item" style="text-align: center; padding: 1.5rem 0.5rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 1px solid rgba(255, 107, 107, 0.1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 107, 0.15)'; this.style.borderColor='rgba(255, 107, 107, 0.2)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 5px 15px rgba(0, 0, 0, 0.05)'; this.style.borderColor='rgba(255, 107, 107, 0.1)'">
+                    <span id="daysCounter" class="counter-number" style="display: block; font-size: 2.2rem; font-weight: 700; color: #ff6b6b; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif;">0</span>
+                    <span class="counter-label" style="font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Jours</span>
+                </div>
+                    <div class="counter-item" style="text-align: center; padding: 1.5rem 0.5rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 1px solid rgba(255, 107, 107, 0.1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 107, 0.15)'; this.style.borderColor='rgba(255, 107, 107, 0.2)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 5px 15px rgba(0, 0, 0, 0.05)'; this.style.borderColor='rgba(255, 107, 107, 0.1)'">
+                        <span id="hoursCounter" class="counter-number" style="display: block; font-size: 2.2rem; font-weight: 700; color: #ff6b6b; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif;">0</span>
+                        <span class="counter-label" style="font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Heures</span>
+                    </div>
+                    <div class="counter-item" style="text-align: center; padding: 1.5rem 0.5rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 1px solid rgba(255, 107, 107, 0.1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 107, 0.15)'; this.style.borderColor='rgba(255, 107, 107, 0.2)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 5px 15px rgba(0, 0, 0, 0.05)'; this.style.borderColor='rgba(255, 107, 107, 0.1)'">
+                        <span id="minutesCounter" class="counter-number" style="display: block; font-size: 2.2rem; font-weight: 700; color: #ff6b6b; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif;">0</span>
+                        <span class="counter-label" style="font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Minutes</span>
+                    </div>
+                    <div class="counter-item" style="text-align: center; padding: 1.5rem 0.5rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 1px solid rgba(255, 107, 107, 0.1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 107, 0.15)'; this.style.borderColor='rgba(255, 107, 107, 0.2)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 5px 15px rgba(0, 0, 0, 0.05)'; this.style.borderColor='rgba(255, 107, 107, 0.1)'">
+                        <span id="secondsCounter" class="counter-number" style="display: block; font-size: 2.2rem; font-weight: 700; color: #ff6b6b; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif;">0</span>
+                        <span class="counter-label" style="font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Secondes</span>
+                    </div>
+                </div>
+            <p class="start-date" style="text-align: center; color: #888; font-style: italic; margin-top: 1.5rem; font-size: 1rem;">Depuis le 27 décembre 2020</p>
+        </div>
+        <div class="compliment-section" style="background: rgba(255, 255, 255, 0.7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(255, 105, 140, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(255, 105, 140, 0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(255, 105, 140, 0.1)'">
+            <h3 style="color: #ff6b6b; font-size: 2.2rem; margin-bottom: 2rem; font-family: 'Tangerine', cursive; font-weight: 700; text-align: center;">Un petit mot doux pour toi</h3>
+            <button id="complimentButton" class="compliment-button" style="background: linear-gradient(45deg, #ff6b6b, #ff8e8e); color: white; border: none; padding: 1rem 2rem; font-size: 1rem; border-radius: 50px; cursor: pointer; margin: 1.5rem auto; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3); display: flex; align-items: center; gap: 0.5rem; max-width: 250px; justify-content: center;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(255, 107, 107, 0.4)'; this.background='linear-gradient(45deg, #ff5a5a, #ff7b7b)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 5px 15px rgba(255, 107, 107, 0.3)'; this.background='linear-gradient(45deg, #ff6b6b, #ff8e8e)'">
+                <span class="button-text" style="font-weight: 500; letter-spacing: 0.5px;">Clique pour un compliment</span>
+                <span class="heart-icon" style="font-size: 1.2rem; animation: pulse 1.5s infinite;">❤️</span>
+            </button>
+            <div id="complimentDisplay" class="compliment-display" style="background: #fff9f9; border-radius: 15px; padding: 2rem; margin: 1.5rem auto; min-height: 150px; display: flex; align-items: center; justify-content: center; border: 2px dashed #ffd6d6; transition: all 0.3s ease; font-style: italic; color: #555; text-align: center; line-height: 1.6; font-size: 1.4rem; width: 90%; max-width: 700px; font-family: 'Tangerine', cursive;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Lecteur Spotify intégré pour Tulsa Jesus Freak -->
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <iframe id="spotifyPlayer" src="https://open.spotify.com/embed/track/0hyImI8JaWONOrzKH7kJsC" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
+
+<!-- Script pour gérer la lecture automatique -->
+<script>
+// Cette fonction sera appelée lorsque le lecteur sera prêt
+// Fonction pour mettre à jour le compteur de relation
+function updateRelationshipCounter() {
+    const startDate = new Date('2020-12-27T00:00:00');
+    const now = new Date();
+    const diffTime = now - startDate;
+    
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+    const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+    
+    if (document.getElementById('daysCounter')) document.getElementById('daysCounter').textContent = diffDays;
+    if (document.getElementById('hoursCounter')) document.getElementById('hoursCounter').textContent = diffHours;
+    if (document.getElementById('minutesCounter')) document.getElementById('minutesCounter').textContent = diffMinutes;
+    if (document.getElementById('secondsCounter')) document.getElementById('secondsCounter').textContent = diffSeconds;
+}
+
+// Initialisation du lecteur Spotify
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    const element = document.getElementById('spotifyPlayer');
+    if (element) {
+        const options = {
+            width: '100%',
+            height: '80',
+            uri: 'spotify:track:0hyImI8JaWONOrzKH7kJsC'
+        };
+        
+        const controller = IFrameAPI.createController(element, options, (EmbedController) => {
+            // Lecture automatique après un court délai
+            setTimeout(() => {
+                EmbedController.play();
+            }, 1000);
+        });
+    }
+};
+
+// Mettre à jour le compteur immédiatement et chaque seconde
+document.addEventListener('DOMContentLoaded', function() {
+    updateRelationshipCounter();
+    setInterval(updateRelationshipCounter, 1000);
+});
+
+// Liste de compliments
+const COMPLIMENTS = [
+    "Ton sourire est vraiment magnifique aujourd'hui !",
+    "T'es vraiment unique, tu sais ? Je t'admire.",
+    "T'es la meilleure, sérieusement. T'as un truc en plus.",
+    "J'adore comment tu arrives toujours à me faire rire, même quand je suis de mauvaise humeur.",
+    "T'as un cœur en or, ne change jamais ça.",
+    "T'es la seule personne avec qui je peux être moi-même à 100%.",
+    "Je sais pas comment tu fais, mais tu rends tout plus beau autour de toi.",
+    "Ton rire est ma sonnerie préférée.",
+    "T'es bien plus forte que ce que tu crois, fais-moi confiance.",
+    "T'es le genre de personne qui rend les journées grises plus lumineuses.",
+    "T'as un talent fou pour rendre les gens heureux autour de toi.",
+    "Je sais que je te le dis pas assez, mais t'es incroyable.",
+    "T'as un charisme fou, tout le monde est attiré par toi.",
+    "Ton énergie est contagieuse, c'est dingue !",
+    "T'es la preuve que les belles âmes existent.",
+    "Je suis tellement fière de toi, tu te rends compte du chemin parcouru ?"
+];
+
+// Fonction pour afficher un compliment aléatoire
+function showRandomCompliment() {
+    const complimentDisplay = document.getElementById('complimentDisplay');
+    const randomIndex = Math.floor(Math.random() * COMPLIMENTS.length);
+    const compliment = COMPLIMENTS[randomIndex];
+    
+    // Animation de fade in
+    complimentDisplay.style.opacity = '0';
+    setTimeout(() => {
+        complimentDisplay.textContent = compliment;
+        complimentDisplay.style.opacity = '1';
+    }, 300);
+}
+
+// Ajout de l'événement au bouton
+document.addEventListener('DOMContentLoaded', function() {
+    const complimentButton = document.getElementById('complimentButton');
+    if (complimentButton) {
+        complimentButton.addEventListener('click', showRandomCompliment);
+    }
+});
+    </script>
+
+    <script>
+// Mot de passe pour voir le message (vous pouvez le changer)
+const PASSWORD = "1234";
+
+// Fonction pour déverrouiller le message
+function unlockMessage() {
+    const input = document.getElementById('passwordInput');
+    if (!input) return false;
+    
+    if (input.value === PASSWORD) {
+        document.getElementById('messageContainer').style.display = 'block';
+        document.getElementById('passwordPrompt').style.display = 'none';
+        localStorage.setItem('messageUnlocked', 'true');
+    } else {
+        alert('Mot de passe incorrect');
+        input.value = '';
+        input.focus();
+    }
+    return false;
+}
+
+// Fonction pour verrouiller le message
+function lockMessage() {
+    if (confirm('Voulez-vous vraiment verrouiller le message ?')) {
+        document.getElementById('messageContainer').style.display = 'none';
+        document.getElementById('passwordPrompt').style.display = 'block';
+        const passwordInput = document.getElementById('passwordInput');
+        if (passwordInput) {
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+        localStorage.removeItem('messageUnlocked');
+    }
+    return false;
+}
+
+// Initialisation au chargement du document
+document.addEventListener('DOMContentLoaded', function() {
+    // Configuration des boutons
+    const lockButton = document.getElementById('lockButton');
+    const unlockButton = document.getElementById('unlockButton');
+    const passwordInput = document.getElementById('passwordInput');
+    
+    // Ajout des écouteurs d'événements
+    if (lockButton) {
+        lockButton.addEventListener('click', lockMessage);
+    }
+    
+    if (unlockButton) {
+        unlockButton.addEventListener('click', unlockMessage);
+    }
+    
+    // Gestion de la touche Entrée dans le champ de mot de passe
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                unlockMessage();
+            }
+        });
+        passwordInput.focus();
+    }
+    
+    // Vérifier si le message était déjà déverrouillé
+    if (localStorage.getItem('messageUnlocked') === 'true') {
+        document.getElementById('messageContainer').style.display = 'block';
+        document.getElementById('passwordPrompt').style.display = 'none';
+    }
+});
+
+// Gestion du rafraîchissement de la page
+window.onbeforeunload = function() {
+    if (localStorage.getItem('messageUnlocked') === 'true') {
+        return 'Le message sera verrouillé si vous quittez cette page. Continuer ?';
+    }
+};
+
+    // Empêcher le défilement automatique vers une ancre au chargement
+    window.addEventListener('load', function() {
+        if (window.location.hash) {
+            // Enlève le hash de l'URL sans déclencher de défilement
+            history.replaceState('', document.title, window.location.pathname + window.location.search);
+            // Fait défiler vers le haut de la page
+            window.scrollTo(0, 0);
+        }
+    </script>
+    <nav class="menu">
+        <div class="menu-toggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu-list">
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#about">A propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <script src="js/menu.js"></script>
+    <script src="js/menu.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
