@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+    <link rel="stylesheet" href="mobile-fixes.css" media="(max-width: 768px)">
 </head>
 <body>
 <script>
@@ -41,12 +42,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <header class="site-header">
     <div class="header-left">
-        <button class="burger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <span class="nav-text">menu</span>
+        <a href="souvenirs.html" class="btn-souvenirs" style="display: flex; flex-direction: column; align-items: center; line-height: 1.2;">
+            <span>Nos</span>
+            <span>Souvenirs</span>
+        </a>
     </div>
 
     <div class="header-center">
@@ -56,10 +55,6 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class="header-right">
-        <a href="souvenirs.html" class="btn-reserve" style="display: flex; flex-direction: column; align-items: center; line-height: 1.2; margin-right: 15px;">
-            <span>Nos</span>
-            <span>Souvenirs</span>
-        </a>
         <a href="#contact" class="btn-reserve" style="display: flex; flex-direction: column; align-items: center; line-height: 1.2;">
             <span>For</span>
             <span>Xu Chen</span>
@@ -71,12 +66,11 @@ window.addEventListener('DOMContentLoaded', function() {
     <div class="wavy-decoration"></div>
 </header>
 
-<!-- Menu Mobile -->
+<!-- Menu Mobile (caché par défaut) -->
 <div id="mobileMenu" class="mobile-menu">
     <a href="index.html">Accueil</a>
     <a href="souvenirs.html">Nos Souvenirs</a>
     <a href="sondage-amour.html">Sondage d'Amour</a>
-    <a href="#" id="viewResponsesBtn" onclick="if(typeof showResponses === 'function') showResponses(); return false;">Voir les Réponses</a>
 </div>
 <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
 
@@ -249,82 +243,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
     </script>
 
+    <!-- Inclusion du script de gestion du mot de passe -->
+    <script src="js/password.js"></script>
+    
     <script>
-// Mot de passe pour voir le message (vous pouvez le changer)
-const PASSWORD = "1234";
-
-// Fonction pour déverrouiller le message
-function unlockMessage() {
-    const input = document.getElementById('passwordInput');
-    if (!input) return false;
-    
-    if (input.value === PASSWORD) {
-        document.getElementById('messageContainer').style.display = 'block';
-        document.getElementById('passwordPrompt').style.display = 'none';
-        localStorage.setItem('messageUnlocked', 'true');
-    } else {
-        alert('Mot de passe incorrect');
-        input.value = '';
-        input.focus();
-    }
-    return false;
-}
-
-// Fonction pour verrouiller le message
-function lockMessage() {
-    if (confirm('Voulez-vous vraiment verrouiller le message ?')) {
-        document.getElementById('messageContainer').style.display = 'none';
-        document.getElementById('passwordPrompt').style.display = 'block';
-        const passwordInput = document.getElementById('passwordInput');
-        if (passwordInput) {
-            passwordInput.value = '';
-            passwordInput.focus();
-        }
-        localStorage.removeItem('messageUnlocked');
-    }
-    return false;
-}
-
-// Initialisation au chargement du document
-document.addEventListener('DOMContentLoaded', function() {
-    // Configuration des boutons
-    const lockButton = document.getElementById('lockButton');
-    const unlockButton = document.getElementById('unlockButton');
-    const passwordInput = document.getElementById('passwordInput');
-    
-    // Ajout des écouteurs d'événements
-    if (lockButton) {
-        lockButton.addEventListener('click', lockMessage);
-    }
-    
-    if (unlockButton) {
-        unlockButton.addEventListener('click', unlockMessage);
-    }
-    
-    // Gestion de la touche Entrée dans le champ de mot de passe
-    if (passwordInput) {
-        passwordInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                unlockMessage();
-            }
-        });
-        passwordInput.focus();
-    }
-    
-    // Vérifier si le message était déjà déverrouillé
-    if (localStorage.getItem('messageUnlocked') === 'true') {
-        document.getElementById('messageContainer').style.display = 'block';
-        document.getElementById('passwordPrompt').style.display = 'none';
-    }
-});
-
-// Gestion du rafraîchissement de la page
-window.onbeforeunload = function() {
-    if (localStorage.getItem('messageUnlocked') === 'true') {
-        return 'Le message sera verrouillé si vous quittez cette page. Continuer ?';
-    }
-};
-
     // Empêcher le défilement automatique vers une ancre au chargement
     window.addEventListener('load', function() {
         if (window.location.hash) {
@@ -333,6 +255,7 @@ window.onbeforeunload = function() {
             // Fait défiler vers le haut de la page
             window.scrollTo(0, 0);
         }
+    });
     </script>
     <nav class="menu">
         <div class="menu-toggle">

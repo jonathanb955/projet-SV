@@ -9,7 +9,7 @@ function toggleMobileMenu(event) {
     }
     
     const menu = document.getElementById('mobileMenu');
-    const hamburger = document.querySelector('.hamburger');
+    const hamburger = document.querySelector('.burger-menu');
     const overlay = document.getElementById('mobileMenuOverlay');
     
     console.log('Éléments trouvés:', { menu, hamburger, overlay });
@@ -36,7 +36,7 @@ function closeMobileMenu() {
     console.log('Fermeture du menu');
     
     const menu = document.getElementById('mobileMenu');
-    const hamburger = document.querySelector('.hamburger');
+    const hamburger = document.querySelector('.burger-menu');
     const overlay = document.getElementById('mobileMenuOverlay');
     
     if (menu) menu.classList.remove('active');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM chargé, initialisation du menu...');
     
     // Écouteur pour le bouton hamburger
-    const hamburger = document.querySelector('.hamburger');
+    const hamburger = document.querySelector('.burger-menu');
     if (hamburger) {
         console.log('Bouton hamburger trouvé');
         hamburger.addEventListener('click', toggleMobileMenu);

@@ -55,13 +55,21 @@ body {
    ======================== */
 .site-header {
     background-color: #fff;
-    /* On enlève un peu de padding bas car la vague contient du blanc maintenant */
-    padding: 15px 40px 10px 40px;
-
+    padding: 0; /* Suppression du padding */
+    margin: 0; /* Suppression des marges */
     position: relative;
-    z-index: 100; /* Le chef, c'est le header */
+    z-index: 100;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Conteneur pour le contenu du header */
+.header-content {
+    display: flex;
+    width: 100%;
+    padding: 10px 20px;
     align-items: center;
 }
 
@@ -128,7 +136,7 @@ body {
     background-attachment: scroll;
     background-clip: border-box;
     border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: none; /* Suppression de la bordure inférieure */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 1px 0;
     position: relative;
@@ -693,8 +701,8 @@ body {
    ======================== */
 .wavy-decoration {
     position: absolute;
-    /* On le colle tout en bas du header, mais on le fait descendre hors du flux */
-    bottom: -29px; /* Hauteur de la vague - 1px pour chevauchement */
+    /* Position de la vague sous le header */
+    bottom: -25px; /* Position plus basse */
     left: 0;
     width: 100%;
     height: 30px;
@@ -720,6 +728,8 @@ body {
     position: relative;
     height: 85vh; /* Un peu plus grand */
     min-height: 500px;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
     width: 100%;
     background: url('https://i.pinimg.com/originals/b5/c8/9a/b5c89a07d0780e99053f0b2099d741e0.jpg') center/cover no-repeat;
     image-rendering: -webkit-optimize-contrast;
@@ -914,12 +924,17 @@ body {
     .nav-text, .lang-switch, .logo-city, .btn-reserve { display: none; }
     .logo-brand { font-size: 2rem; }
     .wavy-decoration { background-size: 100px 25px; } /* Ajustement mobile */
-    .hero-section { height: 60vh; margin-top: -20px; }
+    .hero-section { 
+        height: 60vh; 
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
     .floating-text { font-size: 3rem; }
     .bottom-banner p { font-size: 0.7rem; }
 }
 
 /* ========================
+{{ ... }}
    SECTIONS DE CONTENU
    ======================== */
 .content-section {
