@@ -1,0 +1,119 @@
+/* ========================
+   MOBILE STYLES - SOUVENIRS
+   ======================== */
+
+/* Base Styles */
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Header */
+.site-header {
+    padding: 10px 15px !important;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-left {
+    flex-direction: column;
+    gap: 10px !important;
+    text-align: center;
+}
+
+.header-right {
+    width: 100%;
+    justify-content: center !important;
+}
+
+/* Carte */
+#memoryMap {
+    height: 300px !important;
+    width: 95% !important;
+    margin: 1rem auto !important;
+}
+
+/* Formulaire d'ajout de souvenir */
+.add-memory-form {
+    padding: 15px !important;
+    margin: 10px !important;
+    width: auto !important;
+}
+
+/* Liste des souvenirs */
+.memories-list {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 0 10px !important;
+}
+
+.memory-item {
+    margin: 0 0 1rem 0 !important;
+    width: 100% !important;
+}
+
+/* Boutons */
+.btn {
+    padding: 0.8rem 1rem !important;
+    font-size: 1rem !important;
+    margin: 0.3rem 0 !important;
+    width: 100% !important;
+}
+
+/* Formulaire */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+}
+
+/* Images dans les souvenirs */
+.memory-image {
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 10px 0 !important;
+}
+
+/* Footer */
+.site-footer {
+    padding: 1.5rem 10px !important;
+    text-align: center !important;
+}
+
+/* Utilitaires */
+.hide-on-mobile {
+    display: none !important;
+}
+
+/* Adaptation pour très petits écrans */
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.8rem !important;
+    }
+    
+    .btn {
+        padding: 0.7rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Désactiver les animations sur mobile pour de meilleures performances */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}

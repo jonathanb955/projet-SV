@@ -1,0 +1,152 @@
+/* ========================
+   CORRECTIONS MOBILE
+   ======================== */
+
+/* Masquage complet du menu mobile */
+#mobileMenu,
+#mobileMenuOverlay,
+.mobile-menu,
+.mobile-menu-overlay {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Réinitialisation des marges et paddings */
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    overflow-x: hidden;
+}
+
+/* Correction du header */
+.site-header {
+    padding: 10px 20px !important;
+    margin: 0 !important;
+    line-height: 1;
+}
+
+/* Style pour le bouton Nos Souvenirs à gauche */
+.header-left {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: auto;
+    width: auto;
+    overflow: visible;
+}
+
+.btn-souvenirs {
+    text-decoration: none;
+    color: #c93026;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 2px solid #ff6b6b;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-souvenirs:hover {
+    background: #ff6b6b;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Cacher l'ancien bouton burger */
+.burger-menu, .nav-text {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Ajustement de la section hero */
+.hero-section {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    top: -1px; /* Compense tout espace résiduel */
+}
+
+/* Ajustement du logo */
+.logo-brand {
+    height: 60px !important;
+}
+
+/* Ajustement des boutons du header */
+.header-right {
+    gap: 15px !important;
+}
+
+.btn-reserve {
+    font-size: 0.65rem !important;
+    padding: 5px 8px !important;
+}
+
+/* Ajustement du compteur sur mobile */
+@media (max-width: 768px) {
+    .counter-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+        padding: 0 10px !important;
+    }
+    
+    .counter-item {
+        padding: 1rem 0.5rem !important;
+    }
+    
+    .counter-number {
+        font-size: 1.8rem !important;
+    }
+    
+    /* Empêcher le débordement horizontal */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+    
+    /* Ajustement de la section des compteurs */
+    .combined-section {
+        padding: 2rem 0.5rem !important;
+    }
+    
+    .relationship-counters {
+        padding: 1.5rem 1rem !important;
+        margin: 0 10px !important;
+        width: calc(100% - 20px) !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ajustement du texte en bas de page */
+    .bottom-banner {
+        padding: 1rem !important;
+        text-align: center !important;
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Ajustement du lecteur Spotify */
+    #spotifyPlayer {
+        width: 90% !important;
+        max-width: 300px !important;
+        right: 5% !important;
+        left: auto !important;
+    }
+    
+    /* Ajustement du menu mobile */
+    .mobile-menu {
+        padding-top: 70px !important;
+    }
+}
