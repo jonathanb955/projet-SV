@@ -55,8 +55,8 @@ body {
    ======================== */
 .site-header {
     background-color: #fff;
-    padding: 0; /* Suppression du padding */
-    margin: 0; /* Suppression des marges */
+    padding: 0 !important;
+    margin: 0 !important;
     position: relative;
     z-index: 100;
     display: flex;
@@ -102,7 +102,18 @@ body {
 .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 25px; }
 .lang-switch { text-decoration: none; color: #000; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
 .social-icon { display: flex; align-items: center; color: #000; text-decoration: none; margin-left: -15px; }
-.btn-reserve { text-decoration: none; color: #c93026; font-weight: 700; font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; }
+.btn-reserve, .btn-souvenirs { 
+    text-decoration: none; 
+    color: #c93026; 
+    font-weight: 700; 
+    font-size: 0.7rem; 
+    letter-spacing: 1.5px; 
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
 
 /* ========================
    CONTENU PRINCIPAL
@@ -697,16 +708,28 @@ body {
 }
 
 /* ========================
+   BLOC BLANC SOUS LE HEADER
+   ======================== */
+.header-white-block {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 25px; /* Hauteur réduite pour rapprocher la vague */
+    background-color: #fff;
+    z-index: 100; /* Même z-index que le header */
+}
+
+/* ========================
    LA VAGUE ROUGE (CORRIGÉE "Zéro trou")
    ======================== */
 .wavy-decoration {
     position: absolute;
-    /* Position de la vague sous le header */
-    bottom: -35px; /* Position plus basse pour descendre la vague */
+    bottom: -25px; /* Remontée de la vague */
     left: 0;
     width: 100%;
-    height: 40px; /* Hauteur légèrement augmentée */
-    z-index: 101; /* Reste au dessus de l'image */
+    height: 40px;
+    z-index: 101;
     pointer-events: none;
 
     /* NOUVEAU SVG "REMPLI" :
@@ -726,9 +749,9 @@ body {
    ======================== */
 .hero-section {
     position: relative;
-    height: 90vh; /* Hauteur augmentée */
+    height: 90vh;
     min-height: 600px;
-    margin-top: -60px !important; /* Remontée de la section */
+    margin-top: -60px !important; /* Valeur précédente */
     padding-top: 0 !important;
     width: 100%;
     background: url('https://i.pinimg.com/originals/b5/c8/9a/b5c89a07d0780e99053f0b2099d741e0.jpg') center/cover no-repeat;

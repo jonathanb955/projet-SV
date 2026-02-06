@@ -13,6 +13,109 @@ body {
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 70vh !important;
+    min-height: 400px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: url('https://i.pinimg.com/originals/b5/c8/9a/b5c89a07d0780e99053f0b2099d741e0.jpg') center/cover no-repeat !important;
+}
+
+/* Surcharge des styles pour les textes flottants */
+.text-joie, 
+.text-elegance, 
+.text-day {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 5px 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    pointer-events: auto !important;
+}
+
+.text-joie {
+    font-size: 4rem !important;
+    font-family: 'Allura', cursive !important;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5),
+                -1px -1px 1px rgba(0,0,0,0.5),
+                1px -1px 1px rgba(0,0,0,0.5),
+                -1px 1px 1px rgba(0,0,0,0.5) !important;
+}
+
+.text-elegance {
+    font-size: 5rem !important;
+    font-family: 'Tangerine', cursive !important;
+    color: #ff4d6d !important;
+    text-shadow: 1px 1px 0 #fff,
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff !important;
+    margin: 15px 0 !important;
+}
+
+.text-day {
+    font-size: 5rem !important;
+    font-family: 'Tangerine', cursive !important;
+    color: #ff4d6d !important;
+    text-shadow: 1px 1px 0 #fff,
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff !important;
+    margin: 15px 0 !important;
+}
+
+/* Animation de flottement */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Application de l'animation aux textes */
+.text-joie {
+    animation: float 6s ease-in-out infinite;
+}
+
+.text-elegance {
+    animation: float 7s ease-in-out infinite reverse;
+}
+
+.text-day {
+    animation: float 5.5s ease-in-out infinite;
+}
+
+/* Ajustements pour les très petits écrans */
+@media (max-width: 360px) {
+    .text-joie {
+        font-size: 3rem;
+    }
+    .text-elegance {
+        font-size: 4rem;
+    }
+    .text-day {
+        font-size: 2.8rem;
+    }
 }
 
 /* Container */
