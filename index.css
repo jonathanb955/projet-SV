@@ -702,10 +702,10 @@ body {
 .wavy-decoration {
     position: absolute;
     /* Position de la vague sous le header */
-    bottom: -25px; /* Position plus basse */
+    bottom: -35px; /* Position plus basse pour descendre la vague */
     left: 0;
     width: 100%;
-    height: 30px;
+    height: 40px; /* Hauteur légèrement augmentée */
     z-index: 101; /* Reste au dessus de l'image */
     pointer-events: none;
 
@@ -726,9 +726,9 @@ body {
    ======================== */
 .hero-section {
     position: relative;
-    height: 85vh; /* Un peu plus grand */
-    min-height: 500px;
-    margin-top: 0 !important;
+    height: 90vh; /* Hauteur augmentée */
+    min-height: 600px;
+    margin-top: -60px !important; /* Remontée de la section */
     padding-top: 0 !important;
     width: 100%;
     background: url('https://i.pinimg.com/originals/b5/c8/9a/b5c89a07d0780e99053f0b2099d741e0.jpg') center/cover no-repeat;
@@ -2006,41 +2006,35 @@ textarea.form-control {
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
     width: 60px;
     height: 3px;
     background: #ff6b6b;
-    border-radius: 3px;
+/* Style pour le bouton Nos Souvenirs à gauche */
+.header-left {
+    display: flex !important;
+    align-items: center;
+    margin-right: auto;
+    padding-left: 30px;
+    position: relative;
+    z-index: 1000;
+    overflow: visible;
 }
 
-.counter-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.counter-item {
-    text-align: center;
-    padding: 1.5rem 0.5rem;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 107, 107, 0.1);
-}
-
-.counter-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.15);
-    border-color: rgba(255, 107, 107, 0.2);
-}
-
-.counter-number {
-    display: block;
-    font-size: 2.2rem;
+.btn-souvenirs {
+    text-decoration: none;
+    color: #d63026;
     font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
     color: #ff6b6b;
     margin-bottom: 0.5rem;
     font-family: 'Montserrat', sans-serif;
