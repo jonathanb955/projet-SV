@@ -39,7 +39,6 @@
 }
 
 /* Délais d'animation */
-.delay-1 { animation-delay: 0.3s; }
 .delay-2 { animation-delay: 0.6s; }
 .delay-3 { animation-delay: 0.9s; }
 .delay-4 { animation-delay: 1.2s; }
@@ -50,17 +49,25 @@
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform; /* Optimisation des performances */
+    visibility: hidden; /* Cache l'élément avant l'animation */
 }
 
 .scroll-animate.animated {
     opacity: 1;
     transform: translateY(0);
+    visibility: visible; /* Affiche l'élément après l'animation */
 }
 
-/* ========================
-   RESET & BASE
-   ======================== */
-* { 
+/* Délais d'animation spécifiques */
+.scroll-animate.delay-100 { transition-delay: 0.1s; }
+.scroll-animate.delay-200 { transition-delay: 0.2s; }
+.scroll-animate.delay-300 { transition-delay: 0.3s; }
+.scroll-animate.delay-400 { transition-delay: 0.4s; }
+.scroll-animate.delay-500 { transition-delay: 0.5s; }
+
+/* Reset de base */
+* {
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
