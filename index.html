@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+    </style>
     <style media="(max-width: 768px)">
     /* ========================
        CORRECTIONS MOBILE
@@ -53,24 +54,7 @@
         display: flex !important;
         align-items: center;
         justify-content: flex-start;
-        min-width: auto;
-        width: auto;
-        overflow: visible;
-    }
-
-    .btn-souvenirs {
-        text-decoration: none;
-        color: #c93026;
-        font-weight: 700;
-        font-size: 0.7rem;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        padding: 5px 10px;
-        border: 2px solid #ff6b6b;
-        border-radius: 8px;
         transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .btn-souvenirs:hover {
@@ -182,6 +166,21 @@ window.addEventListener('DOMContentLoaded', function() {
         window.scrollTo(0, 0);
     }, 0);
 });
+
+// Empêcher le défilement automatique
+window.addEventListener('DOMContentLoaded', function() {
+    // Supprimer le hash de l'URL sans faire défiler
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
+    // Forcer le défilement vers le haut
+    window.scrollTo(0, 0);
+    
+    // S'assurer que le défilement reste en haut après un court délai
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 0);
+});
 </script>
 
 <!-- Lecteur audio -->
@@ -191,8 +190,8 @@ window.addEventListener('DOMContentLoaded', function() {
 </audio>
 
 <header class="site-header">
-    <div class="header-left">
-        <a href="souvenirs.html" class="btn-souvenirs">
+    <div class="header-left animate-fade-in">
+        <a href="souvenirs.html" class="btn-souvenirs btn-animate">
             <span>Nos</span>
             <span>Souvenirs</span>
         </a>
@@ -242,8 +241,8 @@ window.addEventListener('DOMContentLoaded', function() {
     <div class="vertical-line right-line"></div>
     <div class="letter">
         <div class="letter-content">
-            <div id="messageContainer" style="display: none; color: black;">
-                <p class="message" id="editableMessage" style="color: black;">Joyeuse Saint-Valentin à la personne la plus reloue que je connaisse.<br>
+            <div id="messageContainer" style="display: none;">
+                <p class="message" id="editableMessage" style="color: #000000;">Joyeuse Saint-Valentin à la personne la plus reloue que je connaisse.<br>
 
 C'est quand même incroyable : on se parle à peine en ce moment, c'est tendu, tu me saoules... et pourtant, c'est quand même à toi que je pense aujourd'hui. <br></br>T'as de la chance que je t'aime bien, Xu Chen, parce que franchement, t'es pas facile à suivre.<br> Reviens un peu, c'est nul sans tes conneries.</p>
                 <div id="editControls" style="text-align: right; margin-top: 10px; position: relative; z-index: 1000;">
@@ -271,7 +270,7 @@ C'est quand même incroyable : on se parle à peine en ce moment, c'est tendu, t
     </div>
     <div class="container" style="width: 100%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: stretch;">
         <div class="relationship-counters" style="flex: 1; min-width: 300px; max-width: 600px; background: rgba(255, 255, 255, 0.7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(255, 105, 140, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(255, 105, 140, 0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(255, 105, 140, 0.1)'">
-            <h3 style="color: #ff6b6b; font-size: 2.2rem; margin-bottom: 2rem; font-family: 'Tangerine', cursive; font-weight: 700; text-align: center;">Notre histoire dure déjà</h3>
+            <h3 class="text-swing" style="color: #ff6b6b; font-size: 2.8rem; margin-bottom: 2rem; font-family: 'Tangerine', cursive; font-weight: 700; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">Notre histoire dure déjà</h3>
             <div class="counter-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 0 auto 2rem; width: 100%; max-width: 500px;">
                 <div class="counter-item" style="text-align: center; padding: 1.5rem 0.5rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 1px solid rgba(255, 107, 107, 0.1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 107, 0.15)'; this.style.borderColor='rgba(255, 107, 107, 0.2)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 5px 15px rgba(0, 0, 0, 0.05)'; this.style.borderColor='rgba(255, 107, 107, 0.1)'">
                     <span id="daysCounter" class="counter-number" style="display: block; font-size: 2.2rem; font-weight: 700; color: #ff6b6b; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif;">0</span>
@@ -292,8 +291,8 @@ C'est quand même incroyable : on se parle à peine en ce moment, c'est tendu, t
                 </div>
             <p class="start-date" style="text-align: center; color: #888; font-style: italic; margin-top: 1.5rem; font-size: 1rem;">Depuis le 27 décembre 2020</p>
         </div>
-        <div class="compliment-section" style="background: rgba(255, 255, 255, 0.7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(255, 105, 140, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(255, 105, 140, 0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(255, 105, 140, 0.1)'">
-            <h3 style="color: #ff6b6b; font-size: 2.2rem; margin-bottom: 2rem; font-family: 'Tangerine', cursive; font-weight: 700; text-align: center;">Un petit mot doux pour toi</h3>
+        <div class="compliment-section animate-slide-right delay-2" style="background: rgba(255, 255, 255, 0.7); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(255, 105, 140, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;" onmouseover="createHearts(this)" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(255, 105, 140, 0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(255, 105, 140, 0.1)'">
+            <h3 class="wave-text" style="color: #ff6b6b; font-size: 2.8rem; margin-bottom: 2rem; font-family: 'Tangerine', cursive; font-weight: 700; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">Un petit mot doux pour toi</h3>
             <button id="complimentButton" class="compliment-button" style="background: linear-gradient(45deg, #ff6b6b, #ff8e8e); color: white; border: none; padding: 1rem 2rem; font-size: 1rem; border-radius: 50px; cursor: pointer; margin: 1.5rem auto; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3); display: flex; align-items: center; gap: 0.5rem; max-width: 250px; justify-content: center;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(255, 107, 107, 0.4)'; this.background='linear-gradient(45deg, #ff5a5a, #ff7b7b)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 5px 15px rgba(255, 107, 107, 0.3)'; this.background='linear-gradient(45deg, #ff6b6b, #ff8e8e)'">
                 <span class="button-text" style="font-weight: 500; letter-spacing: 0.5px;">Clique pour un compliment</span>
                 <span class="heart-icon" style="font-size: 1.2rem; animation: pulse 1.5s infinite;">❤️</span>
@@ -397,9 +396,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
     </script>
-
-        <!-- Script JavaScript externe -->
+    
+    <!-- Script JavaScript externe -->
     <script src="./js/main.js"></script>
+    
+    <script>
+    // Attendre que le DOM soit complètement chargé
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialiser le compteur de relation
+        updateRelationshipCounter();
+        setInterval(updateRelationshipCounter, 1000);
+        
+        // Initialiser le lecteur Spotify
+        if (typeof onSpotifyIframeApiReady === 'function') {
+            onSpotifyIframeApiReady(IFrameAPI);
+        }
+    });
+    </script>
     
     <!-- Animation de cœurs désactivée -->
 

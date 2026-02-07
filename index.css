@@ -456,8 +456,8 @@ body {
     min-height: 400px;
     font-family: 'Nothing You Could Do', 'Tangerine', cursive;
     font-size: 1.8rem;
-    color: #3a2c2c;
-    line-height: 1.8;
+    color: #000000;
+    line-height: 2.4em; /* Hauteur de ligne précise */
     text-align: left;
     position: relative;
     background: transparent;
@@ -466,28 +466,41 @@ body {
     letter-spacing: 0.5px;
     word-spacing: 2px;
     filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));
-    background-image: 
-        /* Lignes de texte subtiles */
-        linear-gradient(to bottom, 
-            transparent 0%, 
-            transparent 98%, 
-            rgba(0,0,0,0.03) 98%, 
-            rgba(0,0,0,0.03) 100%
-        );
-    background-size: 100% 2.4em;
+    /* Lignes de texte */
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 2.3em,
+        rgba(0, 0, 0, 0.1) 2.3em,
+        rgba(0, 0, 0, 0.1) 2.4em
+    );
+    background-position: 0 1.2em;
     background-attachment: local;
+    padding-top: 0.6em;
+    background-origin: content-box;
 }
 
-/* Variations de couleur du texte pour un effet plus naturel */
+/* Style du paragraphe de la lettre */
 .letter-content p {
-    margin: 0 0 1.5rem 0;
+    margin: 0;
+    padding: 0;
+    display: block;
+    color: #000000;
+    -webkit-text-fill-color: #000000;
+    text-fill-color: #000000;
+    line-height: 2.4em; /* Hauteur de ligne précise */
+    margin: 0;
+    padding: 0;
     position: relative;
-    display: inline;
-    background: linear-gradient(to right, #3a2c2c 0%, #5a4a42 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+    top: -0.3em; /* Ajustement fin pour l'alignement sur les lignes */
+}
+
+/* Réinitialisation des sauts de ligne */
+.letter-content br {
+    content: "";
+    display: block;
+    margin: 0;
+    line-height: 2.4em;
 }
 
 /* Suppression des taches d'encre et de café */
