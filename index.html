@@ -253,8 +253,10 @@ C'est quand même incroyable : on se parle à peine en ce moment, c'est tendu, t
             <div id="passwordPrompt" style="text-align: center; padding: 20px 0;">
                 <p style="margin: 0 0 10px 0; font-style: italic; color: black;">Entrez le mot de passe pour voir le message</p>
                 <div style="display: inline-block; margin: 0 auto;">
-                    <input type="password" id="passwordInput" placeholder="Mot de passe" style="padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px; width: 200px;">
-                    <button id="unlockButton" style="padding: 6px 12px; background: #ff6b6b; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 5px;">OK</button>
+                    <form id="passwordForm" onsubmit="event.preventDefault(); unlockMessage(); return false;">
+                        <input type="password" id="passwordInput" placeholder="Mot de passe" style="padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px; width: 200px;">
+                        <button type="button" id="unlockButton" style="padding: 6px 12px; background: #ff6b6b; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 5px;">OK</button>
+                    </form>
                 </div>
             </div>
         </div>
