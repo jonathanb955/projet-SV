@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Sacramento&family=Allura&family=Tangerine:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tF/mJ8O5IwCJ2L0A/XYE="
@@ -46,12 +46,13 @@
 <body>
 <header class="site-header">
     <div class="header-left">
-        <button class="burger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <span class="nav-text">menu</span>
+        <a href="index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i>
+            <div class="back-text">
+                <div>Retour à</div>
+                <div>l'accueil</div>
+            </div>
+        </a>
     </div>
 
     <div class="header-center">
@@ -61,12 +62,9 @@
     </div>
 
     <div class="header-right">
-        <a href="index.html" style="text-decoration: none; color: #c93026; font-weight: 700; font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s ease; display: inline-flex; align-items: center; margin-right: 15px; line-height: 1.2;">
-            <div style="text-align: right; margin-right: 8px;">
-                <div>Retour à</div>
-                <div>l'accueil</div>
-            </div>
-            <i class="bi bi-box-arrow-in-left" style="font-size: 1.2rem; margin-left: 5px; transition: transform 0.3s ease;"></i>
+        <a href="#" class="btn-reserve" style="display: flex; flex-direction: column; align-items: center; line-height: 1; font-size: 0.7rem; white-space: nowrap;">
+            <span>For</span>
+            <span>Xu Chen</span>
         </a>
         <a href="#" class="social-icon" aria-label="Cœur">
             <i class="bi bi-tux" style="color: #ff4d6d; font-size: 1.8rem;"></i>
@@ -90,8 +88,8 @@
             <div class="floating-text text-elegance">Souvenirs</div>
             <div class="floating-text text-day">Précieux</div>
             <div class="hero-buttons">
-                <a href="#map" class="btn-reserve">Voir la carte</a>
-                <a href="#memories" class="btn-reserve btn-outline">Voir les souvenirs</a>
+                <a href="#map" class="btn-hero btn-primary">Voir la carte</a>
+                <a href="#memories" class="btn-hero btn-outline">Voir les souvenirs</a>
             </div>
         </div>
     </section>
