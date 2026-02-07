@@ -2,14 +2,17 @@ console.log('menu.js chargé');
 
 // Fonction pour basculer le menu
 function toggleMobileMenu(event) {
+    console.log('toggleMobileMenu appelé');
     if (event) {
         event.preventDefault();
         event.stopPropagation();
     }
     
-    const menu = document.querySelector('.mobile-menu') || document.getElementById('mobileMenu');
+    const menu = document.getElementById('mobileMenu');
     const hamburger = document.querySelector('.burger-menu');
-    const overlay = document.querySelector('.menu-overlay') || document.getElementById('mobileMenuOverlay');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    console.log('Éléments trouvés:', { menu, hamburger, overlay });
     
     if (!menu || !hamburger || !overlay) {
         console.error('Éléments manquants pour le menu');
@@ -24,13 +27,17 @@ function toggleMobileMenu(event) {
     // Gère le défilement de la page
     const isOpen = menu.classList.contains('active');
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    
+    console.log('Menu état:', isOpen ? 'ouvert' : 'fermé');
 }
 
 // Fonction pour fermer le menu
 function closeMobileMenu() {
-    const menu = document.querySelector('.mobile-menu') || document.getElementById('mobileMenu');
+    console.log('Fermeture du menu');
+    
+    const menu = document.getElementById('mobileMenu');
     const hamburger = document.querySelector('.burger-menu');
-    const overlay = document.querySelector('.menu-overlay') || document.getElementById('mobileMenuOverlay');
+    const overlay = document.getElementById('mobileMenuOverlay');
     
     if (menu) menu.classList.remove('active');
     if (hamburger) hamburger.classList.remove('active');
@@ -39,42 +46,8 @@ function closeMobileMenu() {
     document.body.style.overflow = '';
 }
 
-// Gestion du redimensionnement de la fenêtre
-function handleResize() {
-    if (window.innerWidth > 768) {
-        closeMobileMenu();
-    }
-}
-
 // Initialisation au chargement
 document.addEventListener('DOMContentLoaded', function() {
-    // Écouteurs d'événements pour le menu burger
-    const burgerButton = document.querySelector('.burger-menu');
-    if (burgerButton) {
-        burgerButton.addEventListener('click', toggleMobileMenu);
-    }
-    
-    // Fermer le menu en cliquant sur un lien
-    const menuLinks = document.querySelectorAll('.mobile-menu a, #mobileMenu a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-    
-    // Fermer le menu en cliquant sur l'overlay
-    const overlay = document.querySelector('.menu-overlay, #mobileMenuOverlay');
-    if (overlay) {
-        overlay.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Gestion du redimensionnement
-    window.addEventListener('resize', handleResize);
-    
-    // Désactiver le défilement de la page lorsque le menu est ouvert
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeMobileMenu();
-        }
-    });
     console.log('DOM chargé, initialisation du menu...');
     
     // Écouteur pour le bouton hamburger
