@@ -401,17 +401,25 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="./js/main.js"></script>
     
     <script>
-    // Attendre que le DOM soit complètement chargé
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialiser le compteur de relation
-        updateRelationshipCounter();
-        setInterval(updateRelationshipCounter, 1000);
+    // Initialiser le compteur de relation
+    function initPage() {
+        if (typeof updateRelationshipCounter === 'function') {
+            updateRelationshipCounter();
+            setInterval(updateRelationshipCounter, 1000);
+        }
         
         // Initialiser le lecteur Spotify
-        if (typeof onSpotifyIframeApiReady === 'function') {
+        if (typeof onSpotifyIframeApiReady === 'function' && typeof IFrameAPI !== 'undefined') {
             onSpotifyIframeApiReady(IFrameAPI);
         }
-    });
+    }
+    
+    // Attendre que le DOM soit complètement chargé
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+        initPage();
+    }
     </script>
     
     <!-- Animation de cœurs désactivée -->
