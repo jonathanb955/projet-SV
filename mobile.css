@@ -97,12 +97,100 @@ body {
     animation: float 6s ease-in-out infinite;
 }
 
+/* Styles pour la section de la lettre d'amour */
+.love-letter {
+    padding: 2rem 0.5rem !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+    width: 95% !important;
+    max-width: 100% !important;
+}
+
+.letter {
+    width: 95% !important;
+    max-width: 100% !important;
+    padding: 20px 15px !important;
+    margin: 0 auto !important;
+}
+
+.letter-content {
+    padding: 20px 10px !important;
+    min-height: 300px !important;
+    font-size: 1.4rem !important;
+}
+
+.vertical-line {
+    display: none !important;
+}
+
 .text-elegance {
     animation: float 7s ease-in-out infinite reverse;
 }
 
 .text-day {
     animation: float 5.5s ease-in-out infinite;
+}
+
+/* Styles pour la section combinée (compteur + générateur) */
+.combined-section {
+    padding: 2rem 0.5rem !important;
+    position: relative !important;
+    overflow: visible !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.combined-section .container {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 0 10px !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.relationship-counters,
+.compliment-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.5rem 1rem !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+.counter-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    padding: 0 5px !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+}
+
+.counter-item {
+    padding: 1rem 0.5rem !important;
+}
+
+.counter-number {
+    font-size: 1.8rem !important;
+}
+
+.compliment-section h3 {
+    font-size: 2.2rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.compliment-button {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    max-width: 100% !important;
 }
 
 /* Ajustements pour les très petits écrans */
