@@ -400,7 +400,14 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     
     <!-- Script JavaScript externe -->
-    <script src="./js/main.js"></script>
+    <script>
+        // Vérification du chargement du script
+        console.log('Chargement du script main.js...');
+        window.addEventListener('error', function(e) {
+            console.error('Erreur de chargement du script:', e);
+        });
+    </script>
+    <script src="js/main.js"></script>
     
     <script>
     // Initialiser le compteur de relation
