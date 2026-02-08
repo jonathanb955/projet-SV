@@ -66,6 +66,12 @@
     visibility: visible !important;
     transform: none !important;
     transition: none !important;
+    margin: 5rem 0; /* Augmentation de la marge à 5rem (80px) en haut et en bas */
+}
+
+/* Ajout d'un espacement supplémentaire avant la section combinée */
+.combined-section {
+    margin-top: 8rem; /* 8rem (128px) d'espace au-dessus de la section combinée */
 }
 
 /* Délais d'animation spécifiques */
