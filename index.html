@@ -554,8 +554,14 @@ document.addEventListener('DOMContentLoaded', function() {
         #surpriseImage {
             max-width: 90%;
             max-height: 80vh;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            background: transparent;
         }
     </style>
 
@@ -563,6 +569,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Variables globales
         let clickCount = 0;
         const surpriseImages = [
+            // Nouveaux GIFs ajoutés
+            'https://media.tenor.com/ihDZotvNiHQAAAAC/fox-love.gif',
+            'https://i.pinimg.com/originals/a7/dc/4a/a7dc4a0db9469577bd24700a124d3249.gif',
+            'https://v1.pinimg.com/videos/mc/720p/65/e9/2b/65e92b518fd865f19cad916b3784a0c7.mp4',
+            'https://i.pinimg.com/originals/af/1b/e4/af1be4557381e7b869ef2cdfc8c5cdb8.gif',
+            'https://i.pinimg.com/originals/13/26/f2/1326f26339c2a3271898c88a8f7ac5c6.gif',
+            'https://i.pinimg.com/originals/fa/49/4e/fa494e85b6099eda29f75fa0ae547e7a.gif',
+            // Anciens GIFs conservés
             'https://c.tenor.com/FDk5XJ4zSZQAAAAC/kawaii-love.gif',
             'https://i.pinimg.com/originals/94/f4/b9/94f4b9c95467ba5b88ba638e00d26e8d.gif',
             'https://i.pinimg.com/originals/16/32/a1/1632a147769bac461a1ad8445ab346e1.gif',
@@ -572,7 +586,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialisation au chargement de la page
         document.addEventListener('DOMContentLoaded', function() {
-            // Récupération des éléments
             const mysteryBox = document.getElementById('mysteryBox');
             const clickCounter = document.getElementById('clickCounter');
             const surpriseImage = document.getElementById('surpriseImage');
