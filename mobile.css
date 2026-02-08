@@ -13,36 +13,34 @@ body {
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     width: 100%;
-    margin: 0;
     padding: 0;
 }
 
 /* Hero Section */
 .hero-section {
-    height: 70vh !important;
+    height: 60vh !important;
     min-height: 400px !important;
     display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    position: relative !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    background: url('https://i.pinimg.com/originals/b5/c8/9a/b5c89a07d0780e99053f0b2099d741e0.jpg') center/cover no-repeat !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
 }
 
-/* Surcharge des styles pour les textes flottants */
-.text-joie, 
-.text-elegance, 
-.text-day {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
+.hero-section .floating-text {
+    font-family: 'Tangerine', cursive;
+    font-size: 5rem;
+    color: #ff6b6b;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: none !important;
+    position: static !important;
     transform: none !important;
+    opacity: 1 !important;
+    display: block;
     margin: 5px 0 !important;
     width: 100% !important;
     text-align: center !important;
@@ -191,6 +189,127 @@ body {
     padding: 0.8rem 1.5rem !important;
     font-size: 0.9rem !important;
     max-width: 100% !important;
+}
+
+/* Styles pour la section de la boîte mystère avec GIF */
+
+/* Conteneur principal sur mobile */
+@media (max-width: 768px) {
+    .mystery-section {
+        flex-direction: column !important;
+        padding: 20px 15px !important;
+    }
+    
+    /* Masquage des traits de séparation */
+    .mystery-section > div:before,
+    .mystery-section > div:after {
+        display: none !important;
+    }
+    
+    /* Ajustement des conteneurs */
+    .mystery-section > div {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 0 30px 0 !important;
+        justify-content: center !important;
+    }
+    
+    /* Réorganisation de l'ordre des éléments */
+    .mystery-section > div:nth-child(2) {
+        order: 1; /* Place la boîte mystère en deuxième position */
+    }
+    
+    .mystery-section > div:first-child {
+        order: 0; /* Premier élément : GIF de gauche */
+    }
+    
+    .mystery-section > div:last-child {
+        order: 2; /* Dernier élément : GIF de droite */
+    }
+    
+    /* Ajustement de la taille des vidéos */
+    .mystery-section video {
+        max-width: 250px !important;
+        margin: 0 auto !important;
+        display: block;
+    }
+    
+    /* Ajustement de la boîte mystère */
+    #mysteryBoxContainer {
+        margin: 20px 0 !important;
+        padding: 20px 0 !important;
+        border: none !important;
+        border-top: 1px solid #ffd6d6 !important;
+        border-bottom: 1px solid #ffd6d6 !important;
+        position: relative;
+    }
+    
+    /* Ajout d'un trait de séparation avant la boîte */
+    #mysteryBoxContainer:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #ffd6d6, transparent);
+    }
+    
+    /* Ajustement de la taille de la boîte */
+    #mysteryBox {
+        width: 120px !important;
+        height: 120px !important;
+        margin: 0 auto !important;
+    }
+    
+    #giftIcon {
+        font-size: 2.5rem !important;
+    }
+    
+    /* Ajustement du titre et du texte */
+    #mysteryBoxContainer h2 {
+        font-size: 2.2rem !important;
+        margin: 0 auto 15px !important;
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    #mysteryBoxContainer p {
+        font-size: 0.9rem !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+#mysteryBoxContainer {
+    padding: 20px 0 !important;
+    border-left: none !important;
+    border-top: 1px solid #ffd6d6;
+    margin-top: 20px;
+    padding-top: 30px !important;
+}
+
+#mysteryBoxContainer h2 {
+    font-size: 2rem !important;
+}
+
+/* Conteneur principal */
+#mysteryBoxContainer + div {
+    flex-direction: column !important;
+    padding: 20px 15px !important;
+}
+
+/* Conteneur du GIF */
+#mysteryBoxContainer + div > div:first-child {
+    padding-right: 0 !important;
+    padding-bottom: 20px;
+    justify-content: center !important;
+}
+
+/* Taille du GIF sur mobile */
+#mysteryBoxContainer + div video {
+    max-width: 250px !important;
 }
 
 /* Ajustements pour les très petits écrans */
