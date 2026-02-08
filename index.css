@@ -59,6 +59,15 @@
     visibility: visible; /* Affiche l'élément après l'animation */
 }
 
+/* Styles pour forcer l'affichage des sections sans animation */
+.love-letter,
+.combined-section {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+}
+
 /* Délais d'animation spécifiques */
 .scroll-animate.delay-100 { transition-delay: 0.1s; }
 .scroll-animate.delay-200 { transition-delay: 0.2s; }
