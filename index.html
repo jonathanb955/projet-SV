@@ -316,17 +316,80 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
 </section>
 
-<!-- Lecteur Spotify intégré pour Tulsa Jesus Freak de Lana Del Rey -->
+<!-- Lecteur YouTube avec API -->
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-    <iframe src="https://open.spotify.com/embed/track/4HjS5b3FlmXsxnRBRfxmY8" 
-            width="300" 
-            height="80" 
-            frameborder="0" 
-            allowtransparency="true" 
-            allow="encrypted-media"
-            style="border-radius: 8px;">
-    </iframe>
+    <div id="youtube-player"></div>
+    <button id="play-button" style="display: none; position: absolute; bottom: 20px; right: 20px; background: #ff6b6b; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; z-index: 10000;">
+        Lancer la musique
+    </button>
 </div>
+
+<!-- API YouTube -->
+<script>
+    // Chargement de l'API YouTube de manière asynchrone
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player;
+    
+    // Fonction appelée quand l'API est prête
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-player', {
+            height: '80',
+            width: '300',
+            videoId: 'e5YhGbVH8B4',
+            playerVars: {
+                'autoplay': 0,
+                'start': 30, // Démarrage à 30 secondes
+                'controls': 0,
+                'disablekb': 1,
+                'fs': 0,
+                'loop': 1,
+                'modestbranding': 1,
+                'playsinline': 1,
+                'rel': 0,
+                'showinfo': 0
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    // Quand le lecteur est prêt
+    function onPlayerReady(event) {
+        const playButton = document.getElementById('play-button');
+        playButton.style.display = 'block';
+        
+        // Démarrer la lecture au clic sur le bouton
+        playButton.addEventListener('click', function() {
+            player.playVideo();
+            player.unMute();
+            event.target.setVolume(50); // Volume à 50%
+            playButton.style.display = 'none';
+        });
+        
+        // Essayer de démarrer automatiquement (peut être bloqué par le navigateur)
+        const playPromise = player.playVideo();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Lecture automatique empêchée, affichage du bouton de lecture");
+            });
+        }
+    }
+
+    // Gestion des changements d'état du lecteur
+    function onPlayerStateChange(event) {
+        // Si la vidéo est en cours de lecture, on active le son
+        if (event.data === YT.PlayerState.PLAYING) {
+            player.unMute();
+            player.setVolume(50);
+        }
+    }
+</script>
 
 <!-- Script pour gérer la lecture automatique -->
 <script>
