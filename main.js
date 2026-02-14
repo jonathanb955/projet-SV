@@ -1,7 +1,7 @@
 console.log('Script main.js chargé avec succès!');
 
 // Gestion du mot de passe
-const PASSWORD = "1234";
+const PASSWORD = "27122020";
 
 // Fonction pour déverrouiller le message
 function unlockMessage() {
